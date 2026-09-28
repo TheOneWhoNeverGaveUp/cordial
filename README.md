@@ -167,6 +167,11 @@ wherever `CORDIAL_FLAGS` points. Layering and syntax:
 **Mouse acceleration** is a Settings control — cursor only, or cursor and
 camera — stored in `$XDG_CONFIG_HOME/cordial/shell.json`.
 
+**Frame rate limit**, under Settings → Graphics, raises the engine's own frame
+cap past your display's refresh and keeps it there against Roblox's own
+periodic settings refresh; off by default. Details and the present-mode lever
+beside it: [`docs/fastflags.md`](docs/fastflags.md).
+
 **Separate data roots** per instance come from `XDG_DATA_HOME`, which moves both
 the profile root and the client's data directory. `CORDIAL_PROFILE_ROOT` moves
 only the profile root and not the client.
