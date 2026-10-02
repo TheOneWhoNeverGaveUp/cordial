@@ -1,5 +1,6 @@
-# ADR-018: Plugins get an OS sandbox under Deno, and it does not replace the broker
-
+---
+title: "ADR-018: Plugins get an OS sandbox under Deno, and it does not replace the broker"
+---
 **Status:** accepted
 **Extends:** [ADR-003](/adr/ADR-003-plugin-isolation), [ADR-008](/adr/ADR-008-plugins-are-typescript-on-deno)
 **Related:** [ADR-007](/adr/ADR-007-host-resources-are-brokered)

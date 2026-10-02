@@ -1,5 +1,6 @@
-# ADR-042: Vulkan texture-format queries are counted and, test-only, maskable — nothing is translated
-
+---
+title: "ADR-042: Vulkan texture-format queries are counted and, test-only, maskable — nothing is translated"
+---
 **Status:** accepted; the "nothing is translated" decision was reversed by [ADR-049](/adr/ADR-049-etc2-is-emulated-where-the-driver-lacks-it). The counters and the test-only mask below stand.
 **Supersedes:** nothing
 **Related:** [ADR-001](/adr/ADR-001-in-process-hooking), [ADR-003](/adr/ADR-003-plugin-isolation), [ADR-034](/adr/ADR-034-symbol-resolution-asks-the-library), [ADR-040](/adr/ADR-040-the-engine-already-runs-mimalloc)

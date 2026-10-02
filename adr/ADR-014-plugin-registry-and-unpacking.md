@@ -1,5 +1,6 @@
-# ADR-014: Plugins are published through a signed static index, and unpacked as hostile
-
+---
+title: "ADR-014: Plugins are published through a signed static index, and unpacked as hostile"
+---
 **Status:** accepted
 **Related:** [ADR-003](/adr/ADR-003-plugin-isolation), [ADR-006](/adr/ADR-006-plugin-events-and-first-party), [ADR-007](/adr/ADR-007-host-resources-are-brokered), [ADR-010](/adr/ADR-010-plugin-asset-overlays), [ADR-013](/adr/ADR-013-per-profile-configuration)
 

@@ -1,5 +1,6 @@
-# ADR-044: Settings that can change reach a running game
-
+---
+title: "ADR-044: Settings that can change reach a running game"
+---
 **Status:** accepted
 **Date:** 2026-09-30
 **Related:** [ADR-003](/adr/ADR-003-plugin-isolation), [ADR-007](/adr/ADR-007-host-resources-are-brokered), [ADR-012](/adr/ADR-012-profiles-and-instances), [ADR-019](/adr/ADR-019-development-control-surface), [ADR-038](/adr/ADR-038-plugin-hot-swap)

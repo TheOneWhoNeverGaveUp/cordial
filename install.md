@@ -1,5 +1,6 @@
-# Installing Cordial
-
+---
+title: "Installing Cordial"
+---
 The README has the quickstart commands. This is the detail behind them: what
 each package format is for, the honest state of the AppImage's web view, and
 how the release signatures and repository trust actually work.
@@ -357,24 +358,27 @@ nothing bundled, the same shape this project uses, and it has been live on
 Flathub throughout. The AI policy is the whole of what stands in the way, not
 what Cordial downloads or when.
 
-> [!NOTE]
-> **Measured end to end on 2026-08-05, flatpak 1.18.0**, against the published
-> URL rather than a stand-in: `remote-add` accepted, `remote-ls` returning
-> `app/io.github.luohoa97.Cordial/x86_64/master`, `install` placing both
-> `cordial-shell` and `cordial-run` in `/app/bin`, and `flatpak run` bringing up
-> the launcher window and holding it. The appstream branch resolves and the
-> metainfo validates, so a software centre lists it too.
->
-> **One known limitation of the Flatpak specifically.** The updater asks
-> NetworkManager on the system bus whether your connection is metered, the
-> sandbox has no system bus, and the check fails closed — so a Flatpak install
-> treats every connection as metered and will not download a Roblox build in the
-> background unless you turn on *Download on metered connections*. Manual
-> downloads are unaffected.
->
-> [The workflow](https://github.com/luohoa97/cordial/actions/workflows/flatpak.yml)
-> is worth a glance before a fresh install: it publishes only on a green run, so
-> a red one on `main` means the remote is serving the previous build.
+<Note>
+
+**Measured end to end on 2026-08-05, flatpak 1.18.0**, against the published
+URL rather than a stand-in: `remote-add` accepted, `remote-ls` returning
+`app/io.github.luohoa97.Cordial/x86_64/master`, `install` placing both
+`cordial-shell` and `cordial-run` in `/app/bin`, and `flatpak run` bringing up
+the launcher window and holding it. The appstream branch resolves and the
+metainfo validates, so a software centre lists it too.
+
+**One known limitation of the Flatpak specifically.** The updater asks
+NetworkManager on the system bus whether your connection is metered, the
+sandbox has no system bus, and the check fails closed — so a Flatpak install
+treats every connection as metered and will not download a Roblox build in the
+background unless you turn on *Download on metered connections*. Manual
+downloads are unaffected.
+
+[The workflow](https://github.com/luohoa97/cordial/actions/workflows/flatpak.yml)
+is worth a glance before a fresh install: it publishes only on a green run, so
+a red one on `main` means the remote is serving the previous build.
+
+</Note>
 
 ## Building from source
 

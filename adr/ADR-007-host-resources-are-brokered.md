@@ -1,5 +1,6 @@
-# ADR-007: Plugins never hold host permissions; Cordial brokers them
-
+---
+title: "ADR-007: Plugins never hold host permissions; Cordial brokers them"
+---
 **Status:** accepted
 **Related:** [ADR-002](/adr/ADR-002-core-shell-and-ui-handoff), [ADR-003](/adr/ADR-003-plugin-isolation), [ADR-006](/adr/ADR-006-plugin-events-and-first-party)
 

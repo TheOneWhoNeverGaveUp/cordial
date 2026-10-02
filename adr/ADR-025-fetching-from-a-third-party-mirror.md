@@ -1,5 +1,6 @@
-# ADR-025: Cordial may fetch the build from a third-party mirror, if it can prove Roblox signed it
-
+---
+title: "ADR-025: Cordial may fetch the build from a third-party mirror, if it can prove Roblox signed it"
+---
 **Status:** accepted
 **Extends:** [ADR-015](https://github.com/luohoa97/cordial/blob/main/docs/adr/ADR-015-cordial-may-fetch-the-roblox-build.md)
 **Related:** [ADR-012](/adr/ADR-012-profiles-and-instances), [ADR-016](/adr/ADR-016-per-profile-network-egress)

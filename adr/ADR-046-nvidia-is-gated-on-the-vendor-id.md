@@ -1,5 +1,6 @@
-# ADR-046: NVIDIA behaviour is gated on the device's vendor id, and says what is inferred
-
+---
+title: "ADR-046: NVIDIA behaviour is gated on the device's vendor id, and says what is inferred"
+---
 **Status:** accepted
 **Supersedes:** nothing
 **Related:** [ADR-001](/adr/ADR-001-in-process-hooking), [ADR-011](/adr/ADR-011-wayland-and-libadwaita), [ADR-017](/adr/ADR-017-sober-issue-corpus), [ADR-024](/adr/ADR-024-x11-is-supported-again), [ADR-042](/adr/ADR-042-texture-format-query-observability)

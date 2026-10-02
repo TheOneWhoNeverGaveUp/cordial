@@ -1,5 +1,6 @@
-# ADR-029: An overlay is three decisions, and every overlay makes all three
-
+---
+title: "ADR-029: An overlay is three decisions, and every overlay makes all three"
+---
 **Status:** accepted
 **Related:** [ADR-011](/adr/ADR-011-wayland-and-libadwaita), [ADR-019](/adr/ADR-019-development-control-surface), [ADR-027](/adr/ADR-027-plugin-overlays)
 

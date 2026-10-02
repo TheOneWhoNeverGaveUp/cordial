@@ -1,5 +1,6 @@
-# ADR-024: X11 is supported again, and it gets the editor
-
+---
+title: "ADR-024: X11 is supported again, and it gets the editor"
+---
 **Status:** accepted
 **Supersedes:** [ADR-011](/adr/ADR-011-wayland-and-libadwaita)'s "X11 is not developed further" and its deletion trigger
 **Related:** [ADR-002](/adr/ADR-002-core-shell-and-ui-handoff), [ADR-023](/adr/ADR-023-host-audio-backends)

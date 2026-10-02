@@ -1,5 +1,6 @@
-# MangoHUD: frame rate and load over the game
-
+---
+title: "MangoHUD: frame rate and load over the game"
+---
 Cordial can turn on [MangoHud](https://github.com/flightlessmango/MangoHud), an
 open-source Vulkan implicit layer, to draw a frame rate, a frame-time graph and
 CPU and GPU load over the client. Off by default, because it draws over the

@@ -1,5 +1,6 @@
-# ADR-012: A profile is storage; an instance is a window
-
+---
+title: "ADR-012: A profile is storage; an instance is a window"
+---
 **Status:** accepted
 **Extended by:** [ADR-013](/adr/ADR-013-per-profile-configuration)
 **Related:** [ADR-002](/adr/ADR-002-core-shell-and-ui-handoff), [ADR-005](/adr/ADR-005-flag-service), [ADR-006](/adr/ADR-006-plugin-events-and-first-party)

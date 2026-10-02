@@ -1,5 +1,6 @@
-# ADR-016: A profile can refuse to run without a VPN, checked by a command it names
-
+---
+title: "ADR-016: A profile can refuse to run without a VPN, checked by a command it names"
+---
 **Status:** accepted, amended 2026-09-08
 
 ## Amendment, 2026-09-08: the check is the operator's command, not one project's

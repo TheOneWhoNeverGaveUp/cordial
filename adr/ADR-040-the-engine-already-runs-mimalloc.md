@@ -1,5 +1,6 @@
-# ADR-040: The engine already runs mimalloc, so there is no allocator to switch
-
+---
+title: "ADR-040: The engine already runs mimalloc, so there is no allocator to switch"
+---
 **Status:** accepted
 **Supersedes:** nothing
 **Related:** [ADR-001](/adr/ADR-001-in-process-hooking), [ADR-034](/adr/ADR-034-symbol-resolution-asks-the-library)

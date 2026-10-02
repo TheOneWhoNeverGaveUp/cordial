@@ -1,5 +1,6 @@
-# ADR-013: Configuration belongs to the profile; code belongs to the machine
-
+---
+title: "ADR-013: Configuration belongs to the profile; code belongs to the machine"
+---
 **Status:** accepted
 **Extends:** [ADR-012](/adr/ADR-012-profiles-and-instances)
 **Related:** [ADR-003](/adr/ADR-003-plugin-isolation), [ADR-005](/adr/ADR-005-flag-service), [ADR-007](/adr/ADR-007-host-resources-are-brokered)

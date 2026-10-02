@@ -4,7 +4,6 @@ sidebarTitle: "What plugins are"
 description: "What plugins are for, what they can and cannot do, and how to install one."
 icon: "puzzle-piece"
 ---
-
 A plugin adds a feature to **Cordial**, not to Roblox. It can set your Discord
 status from the game you are in, apply a set of FastFlags, send a desktop
 notification, or carry a pack of replacement textures. It cannot run code
@@ -24,27 +23,31 @@ Those kinds of request are called **capabilities**. A plugin lists the ones it
 wants, and starts with none of them granted. You grant them per profile, and
 Cordial describes each one in plain words before you do.
 
-<AccordionGroup>
-  <Accordion title="Every capability a plugin can ask for">
-    | Capability | What it lets the plugin do |
-    |---|---|
-    | `flags.read` | See the FastFlags in effect and where each one came from |
-    | `flags.write` | Set FastFlags of its own. They apply at the next launch, and your own `flags.json` still wins |
-    | `log` | Write to Cordial's log |
-    | `lifecycle.read` | Know when the client starts, which Roblox version it is, and when it stops |
-    | `state.read` | Read which place, server and user the client is on |
-    | `presence.set` | Set your Discord Rich Presence. Cordial talks to Discord, not the plugin |
-    | `notify.send` | Show a desktop notification |
-    | `url.open` | Open an `http` or `https` link in your browser |
-    | `assets.override` | Point Cordial at a folder of replacement assets while running |
-    | `settings.read`, `settings.write` | Keep its own settings, which Cordial stores for it |
-    | `events.declare`, `events.publish`, `events.subscribe` | Exchange events with other plugins |
-  </Accordion>
-</AccordionGroup>
+<Accordion title="Every capability a plugin can ask for">
+
+
+| Capability | What it lets the plugin do |
+|---|---|
+| `flags.read` | See the FastFlags in effect and where each one came from |
+| `flags.write` | Set FastFlags of its own. They apply at the next launch, and your own `flags.json` still wins |
+| `log` | Write to Cordial's log |
+| `lifecycle.read` | Know when the client starts, which Roblox version it is, and when it stops |
+| `state.read` | Read which place, server and user the client is on |
+| `presence.set` | Set your Discord Rich Presence. Cordial talks to Discord, not the plugin |
+| `notify.send` | Show a desktop notification |
+| `url.open` | Open an `http` or `https` link in your browser |
+| `assets.override` | Point Cordial at a folder of replacement assets while running |
+| `settings.read`, `settings.write` | Keep its own settings, which Cordial stores for it |
+| `events.declare`, `events.publish`, `events.subscribe` | Exchange events with other plugins |
+
+
+</Accordion>
 
 <Note>
+
 A plugin never receives a network connection or a file. When it sets your
 Discord status, it hands Cordial the text and Cordial sends it.
+
 </Note>
 
 ## The plugins that come with Cordial
@@ -60,9 +63,11 @@ The first time you open **Settings → Plugins**, each of these asks once for
 the capabilities it needs. Until you choose **Allow**, it does nothing.
 
 <Warning>
-**Hide the interface** works only for accounts in the Roblox group that unlocks
-those shortcuts (the one Bloxstrap uses). Cordial cannot check whether yours
-is.
+
+**Hide the interface** works only for accounts in the Roblox group that
+unlocks those shortcuts (the one Bloxstrap uses). Cordial cannot check whether
+yours is.
+
 </Warning>
 
 ## Installing a plugin
@@ -71,22 +76,34 @@ There is no plugin store yet. A plugin reaches you as a file someone shares,
 or as a folder you are writing yourself.
 
 <Steps>
-  <Step title="Turn plugins on">
-    Open **Settings → Plugins** and switch on **Use Plugins**. If Deno is not
-    installed, the page offers a **Download** button (about 39 MB). A `deno`
-    already on your system is used instead.
-  </Step>
-  <Step title="Install the archive">
-    Under **Install from a file**, choose **Choose file…** and pick the plugin.
-    It must be a `.tar.zst` archive; a `.tar.gz` is refused. Installing a
-    plugin does not allow it to do anything: a plugin that contains code
-    arrives switched off.
-  </Step>
-  <Step title="Switch it on and grant what it needs">
-    The plugin appears under **Installed**. Switch it on, then turn on only the
-    capabilities you are happy to give it. Changes reach a running game within
-    about a second. FastFlags are the exception: they apply at the next launch.
-  </Step>
+<Step title="Turn plugins on">
+
+
+Open **Settings → Plugins** and switch on **Use Plugins**. If Deno is not
+installed, the page offers a **Download** button (about 39 MB). A `deno`
+already on your system is used instead.
+
+
+</Step>
+<Step title="Install the archive">
+
+
+Under **Install from a file**, choose **Choose file…** and pick the plugin.
+It must be a `.tar.zst` archive; a `.tar.gz` is refused. Installing a
+plugin does not allow it to do anything: a plugin that contains code
+arrives switched off.
+
+
+</Step>
+<Step title="Switch it on and grant what it needs">
+
+
+The plugin appears under **Installed**. Switch it on, then turn on only the
+capabilities you are happy to give it. Changes reach a running game within
+about a second. FastFlags are the exception: they apply at the next launch.
+
+
+</Step>
 </Steps>
 
 To remove a plugin, use its **Remove** button. Built-in plugins cannot be
@@ -94,14 +111,10 @@ removed, only switched off.
 
 ### Where plugins live
 
-<Tabs>
-  <Tab title="Flatpak">
-    `~/.var/app/io.github.luohoa97.Cordial/data/cordial/plugins/`
-  </Tab>
-  <Tab title="Other installs">
-    `~/.local/share/cordial/plugins/`
-  </Tab>
-</Tabs>
+| Install | Folder |
+|---|---|
+| Flatpak | `~/.var/app/io.github.luohoa97.Cordial/data/cordial/plugins/` |
+| Other installs | `~/.local/share/cordial/plugins/` |
 
 Which plugins are switched on, and what each may do, is stored per profile, so
 two profiles can have different plugins on.

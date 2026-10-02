@@ -1,5 +1,6 @@
-# ADR-028: X11 input comes from XInput2, with the warp as the fallback
-
+---
+title: "ADR-028: X11 input comes from XInput2, with the warp as the fallback"
+---
 **Status:** accepted
 **Related:** [ADR-024](/adr/ADR-024-x11-is-supported-again), [ADR-011](/adr/ADR-011-wayland-and-libadwaita), [ADR-009](https://github.com/luohoa97/cordial/blob/main/docs/adr/ADR-009-input-capture-and-injection.md)
 

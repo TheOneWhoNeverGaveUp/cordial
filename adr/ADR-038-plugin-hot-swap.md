@@ -1,5 +1,6 @@
-# ADR-038: A running client reconciles its plugin set; nothing pushes to it
-
+---
+title: "ADR-038: A running client reconciles its plugin set; nothing pushes to it"
+---
 **Status:** accepted
 **Related:** [ADR-003](/adr/ADR-003-plugin-isolation), [ADR-007](/adr/ADR-007-host-resources-are-brokered),
 [ADR-008](/adr/ADR-008-plugins-are-typescript-on-deno), [ADR-012](/adr/ADR-012-profiles-and-instances),

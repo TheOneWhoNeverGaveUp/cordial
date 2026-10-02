@@ -1,5 +1,6 @@
-# ADR-039: A runtime-backend seam is cheap to describe and not worth building yet
-
+---
+title: "ADR-039: A runtime-backend seam is cheap to describe and not worth building yet"
+---
 **Status:** accepted — no code changes. Its quotation of `docs/multiarch.md`'s "do not build a translation layer" no longer holds for the Meta Quest build, which runs under an in-process translator ([ADR-053](/adr/ADR-053-vr-is-a-mode-of-the-android-runtime)); the macOS decision is unaffected.
 **Date:** 2026-09-24
 **Related:** [ADR-001](/adr/ADR-001-in-process-hooking), [ADR-002](/adr/ADR-002-core-shell-and-ui-handoff), [ADR-003](/adr/ADR-003-plugin-isolation), [ADR-007](/adr/ADR-007-host-resources-are-brokered), [ADR-011](/adr/ADR-011-wayland-and-libadwaita), [ADR-012](/adr/ADR-012-profiles-and-instances), [ADR-019](/adr/ADR-019-development-control-surface), [ADR-033](/adr/ADR-033-roblox-versions-are-a-keyed-store), [ADR-036](/adr/ADR-036-unsafe-is-a-boundary-not-a-convention), [ADR-037](/adr/ADR-037-one-lock-and-a-content-hash-for-the-build-store), [ADR-038](/adr/ADR-038-plugin-hot-swap)

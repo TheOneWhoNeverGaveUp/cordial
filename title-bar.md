@@ -1,5 +1,6 @@
-# Game title bar
-
+---
+title: "Game title bar"
+---
 Settings → Appearance → Game window → Title bar offers **Default**, **Compact**
 and **Hidden**. The choice applies to the next game window you open.
 

@@ -1,5 +1,6 @@
-# Checking this machine
-
+---
+title: "Checking this machine"
+---
 ```bash
 cordial --doctor            # add --offline to skip the update check
 flatpak run io.github.luohoa97.Cordial --doctor

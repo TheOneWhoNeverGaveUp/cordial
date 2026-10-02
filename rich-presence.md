@@ -1,5 +1,6 @@
-# Discord Rich Presence
-
+---
+title: "Discord Rich Presence"
+---
 Cordial ships a Discord Rich Presence plugin, in
 [`plugins/discord-presence/`](https://github.com/luohoa97/cordial/blob/main/plugins/discord-presence). It is first-party in
 the sense that it comes with the project and in no other sense: an ordinary

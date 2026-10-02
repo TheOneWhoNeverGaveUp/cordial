@@ -1,5 +1,6 @@
-# NVIDIA graphics
-
+---
+title: "NVIDIA graphics"
+---
 **Cordial has not been run on an NVIDIA GPU.** Nobody working on it has one, so
 none of this is tested on NVIDIA hardware. What follows is what people running
 the same Roblox engine (through Sober) have reported, what Cordial does about

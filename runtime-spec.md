@@ -1,5 +1,6 @@
-# `cordial.runtime/1`: the runtime spec
-
+---
+title: "`cordial.runtime/1`: the runtime spec"
+---
 **Status: draft v0.1, accepted as design in [ADR-052](/adr/ADR-052-the-runtime-spec). Nothing here is implemented.** No runtime speaks it, `cordial` has no code to load one, and no `--runtime-check` exists. Treat every section as a proposal until the ADR's implementation lands. Sections marked **draft** are the least settled.
 
 Written for someone building a runtime. Cordial lists only its own built-in runtime for now (ADR-052), so a runtime written to this spec will not appear in Cordial until the maintainer vets it, and one that injects code into the Roblox client will not be listed at all.

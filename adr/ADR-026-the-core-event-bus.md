@@ -1,5 +1,6 @@
-# ADR-026: Cordial publishes what it observes, and plugins may never veto it
-
+---
+title: "ADR-026: Cordial publishes what it observes, and plugins may never veto it"
+---
 **Status:** accepted
 **Related:** [ADR-001](/adr/ADR-001-in-process-hooking), [ADR-003](/adr/ADR-003-plugin-isolation), [ADR-006](https://github.com/luohoa97/cordial/blob/main/docs/adr/ADR-006-plugin-events.md), [ADR-007](/adr/ADR-007-host-resources-are-brokered)
 

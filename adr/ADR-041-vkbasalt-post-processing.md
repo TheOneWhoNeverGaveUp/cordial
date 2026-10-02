@@ -1,5 +1,6 @@
-# ADR-041: vkBasalt post-processing is a driver-stack layer, not in-process hooking
-
+---
+title: "ADR-041: vkBasalt post-processing is a driver-stack layer, not in-process hooking"
+---
 **Status:** accepted
 **Date:** 2026-09-29
 **Supersedes:** nothing

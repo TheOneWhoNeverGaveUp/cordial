@@ -1,5 +1,6 @@
-# ADR-032: the AppImage's build base moves to Ubuntu 24.04, and the version floor that blocked it was wrong
-
+---
+title: "ADR-032: the AppImage's build base moves to Ubuntu 24.04, and the version floor that blocked it was wrong"
+---
 **Status:** Accepted
 **Date:** 2026-09-13
 **Extends:** none

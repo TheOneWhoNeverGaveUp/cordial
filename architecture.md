@@ -1,5 +1,6 @@
-# How Cordial works
-
+---
+title: "How Cordial works"
+---
 A map of the tree as it stands, not a specification. Where this and an ADR
 disagree, the ADR is the decision and this is out of date — say so and fix it.
 

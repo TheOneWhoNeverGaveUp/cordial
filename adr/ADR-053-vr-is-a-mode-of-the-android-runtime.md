@@ -1,5 +1,6 @@
-# ADR-053: VR is a mode of the Android runtime, and a profile serves both builds
-
+---
+title: "ADR-053: VR is a mode of the Android runtime, and a profile serves both builds"
+---
 **Status:** accepted
 **Date:** 2026-10-01
 **Supersedes:** decision 5 of [ADR-043](/adr/ADR-043-the-roblox-build-is-the-binarys-architecture) ("Quest is rejected") and the premise of its decision 3, and, for the Quest build only, [`docs/multiarch.md`](/multiarch)'s "no translation layer will be designed". ADR-043's other decisions stand for the phone build.

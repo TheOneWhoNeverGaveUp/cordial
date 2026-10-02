@@ -1,5 +1,6 @@
-# ADR-011: Wayland is the display backend, and the window is libadwaita
-
+---
+title: "ADR-011: Wayland is the display backend, and the window is libadwaita"
+---
 **Status:** superseded in part by [ADR-024](/adr/ADR-024-x11-is-supported-again), which restores X11 as a supported backend. Everything else here stands: Wayland is still primary, and the window is still GTK4 + libadwaita.
 **Supersedes:** the X11-first choice recorded in [`android/window.rs`](https://github.com/luohoa97/cordial/blob/main/crates/cordial-runtime/src/android/window.rs)
 **Related:** [ADR-002](/adr/ADR-002-core-shell-and-ui-handoff), [ADR-009](/adr/ADR-009-capture-yes-overlay-injection-no)

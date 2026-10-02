@@ -1,5 +1,6 @@
-# ADR-050: Other runtimes are launched, not built
-
+---
+title: "ADR-050: Other runtimes are launched, not built"
+---
 **Status:** accepted, implementation parked until after 1.0. Superseded in part by [ADR-052](/adr/ADR-052-the-runtime-spec) for the launching design: features now reach a runtime through a published spec, and Cordial lists only its own runtime for now. The decision that Cordial builds no macOS runtime stands, and so does the reasoning below.
 **Date:** 2026-10-01
 

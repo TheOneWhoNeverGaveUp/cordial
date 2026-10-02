@@ -1,5 +1,6 @@
-# Shaders (vkBasalt): sharpening and anti-aliasing over the game
-
+---
+title: "Shaders (vkBasalt): sharpening and anti-aliasing over the game"
+---
 Cordial can hand the client's frame to
 [vkBasalt](https://github.com/DadSchoorse/vkBasalt), an open-source Vulkan
 implicit layer, for a sharpen pass and an anti-alias pass before it reaches the

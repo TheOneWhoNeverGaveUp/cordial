@@ -1,5 +1,6 @@
-# ADR-035: Match browser joins to saved accounts
-
+---
+title: "ADR-035: Match browser joins to saved accounts"
+---
 **Status:** Accepted, 2026-09-15
 
 ## Context

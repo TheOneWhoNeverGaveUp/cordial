@@ -1,5 +1,6 @@
-# ADR-008: Plugins are TypeScript on Deno
-
+---
+title: "ADR-008: Plugins are TypeScript on Deno"
+---
 **Status:** accepted
 **Related:** [ADR-002](/adr/ADR-002-core-shell-and-ui-handoff), [ADR-003](/adr/ADR-003-plugin-isolation), [ADR-007](/adr/ADR-007-host-resources-are-brokered)
 

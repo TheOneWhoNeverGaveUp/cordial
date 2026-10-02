@@ -1,5 +1,6 @@
-# The Cordial plugin API
-
+---
+title: "The Cordial plugin API"
+---
 A plugin is a directory holding a `plugin.json` and, usually, one TypeScript
 module. Cordial runs that module as a separate Deno process with **no
 permissions at all** — no file, network, environment or subprocess access — and

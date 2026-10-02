@@ -1,5 +1,6 @@
-# ADR-031: The launcher outlives its window, and the client is a child process
-
+---
+title: "ADR-031: The launcher outlives its window, and the client is a child process"
+---
 **Status:** Accepted
 **Date:** 2026-09-13
 **Extends:** [ADR-012](/adr/ADR-012-profiles-and-instances)

@@ -1,5 +1,6 @@
-# ADR-048: Labels and edits from Discord are allowlisted, attributed and logged before they happen
-
+---
+title: "ADR-048: Labels and edits from Discord are allowlisted, attributed and logged before they happen"
+---
 **Status:** accepted; the label picker ships off, and nothing is verified against a live Discord server or GitHub App
 **Date:** 2026-10-01
 **Related:** [ADR-030](/adr/ADR-030-reports-arrive-from-discord)

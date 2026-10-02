@@ -1,5 +1,6 @@
-# ADR-022: A plugin observes, decides and acts; that is what justifies a runtime
-
+---
+title: "ADR-022: A plugin observes, decides and acts; that is what justifies a runtime"
+---
 **Status:** proposed
 **Related:** [ADR-001](/adr/ADR-001-in-process-hooking), [ADR-003](/adr/ADR-003-plugin-isolation), [ADR-005](https://github.com/luohoa97/cordial/blob/main/docs/adr/ADR-005-flag-layers.md), [ADR-007](/adr/ADR-007-host-resources-are-brokered), [ADR-011](/adr/ADR-011-wayland-and-libadwaita), [ADR-018](/adr/ADR-018-plugin-sub-sandboxing), [ADR-019](/adr/ADR-019-development-control-surface), [ADR-020](/adr/ADR-020-declarative-plugin-preferences), [ADR-021](/adr/ADR-021-everything-is-a-plugin)
 

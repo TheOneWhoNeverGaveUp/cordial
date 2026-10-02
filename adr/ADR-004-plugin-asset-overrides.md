@@ -1,5 +1,6 @@
-# ADR-004: Plugins do not override Roblox's assets
-
+---
+title: "ADR-004: Plugins do not override Roblox's assets"
+---
 **Status:** superseded by [ADR-010](/adr/ADR-010-plugin-asset-overlays)
 **Supersedes:** nothing
 **Related:** [ADR-001](/adr/ADR-001-in-process-hooking), [ADR-003](/adr/ADR-003-plugin-isolation)

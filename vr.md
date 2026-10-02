@@ -1,5 +1,6 @@
-# Playing in VR
-
+---
+title: "Playing in VR"
+---
 **Experimental.** Play in VR runs Roblox's Meta Quest build on your PC and
 shows it in your headset through an OpenXR runtime. Your headset is a display;
 the game runs on the computer. The decisions behind it are in

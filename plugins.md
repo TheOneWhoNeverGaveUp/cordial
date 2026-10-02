@@ -1,5 +1,6 @@
-# Installing plugins
-
+---
+title: "Installing plugins"
+---
 ## Plugins need Deno, and Cordial will fetch it
 
 Plugins are TypeScript run under [Deno](https://deno.com)

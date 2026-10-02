@@ -3,7 +3,6 @@ title: "Writing a plugin"
 description: "What a Cordial plugin is for, how it talks to Cordial, and the shortest path from an empty folder to a working one."
 icon: "code"
 ---
-
 ## What plugins are for
 
 Cordial is the launcher and runtime around Roblox's Android client. A plugin
@@ -36,74 +35,92 @@ sends Cordial the text, and Cordial owns the connection to Discord.
 ## A plugin in five minutes
 
 <Steps>
-  <Step title="Make the folder">
-    ```text
-    ~/.local/share/cordial/plugins/hello/
-    ├── plugin.json
-    └── main.ts
-    ```
-    Keep the folder name and the `id` identical. Grants and settings key off
-    the `id`; the FastFlag layer is read back by folder name.
-  </Step>
-  <Step title="Write the manifest">
-    ```json plugin.json
-    {
-      "id": "hello",
-      "name": "Hello",
-      "version": "1.0.0",
-      "entry": "main.ts",
-      "capabilities": ["log"]
+<Step title="Make the folder">
+
+
+```text
+~/.local/share/cordial/plugins/hello/
+├── plugin.json
+└── main.ts
+```
+Keep the folder name and the `id` identical. Grants and settings key off
+the `id`; the FastFlag layer is read back by folder name.
+
+
+</Step>
+<Step title="Write the manifest">
+
+
+```json plugin.json
+{
+  "id": "hello",
+  "name": "Hello",
+  "version": "1.0.0",
+  "entry": "main.ts",
+  "capabilities": ["log"]
+}
+```
+`capabilities` is what you request. What the plugin gets is what the user
+approves.
+
+
+</Step>
+<Step title="Write the module">
+
+
+```ts main.ts
+const enc = new TextEncoder();
+const dec = new TextDecoder();
+let nextId = 1;
+const pending = new Map<number, (msg: any) => void>();
+
+// One reader for the whole process: replies and pushes share the stream.
+(async () => {
+  let buf = "";
+  for await (const chunk of Deno.stdin.readable) {
+    buf += dec.decode(chunk);
+    let i: number;
+    while ((i = buf.indexOf("\n")) >= 0) {
+      const line = buf.slice(0, i);
+      buf = buf.slice(i + 1);
+      if (!line.trim()) continue;
+      const msg = JSON.parse(line);
+      if (msg.id === undefined) continue; // a push; a reply always has an id
+      pending.get(msg.id)?.(msg);
+      pending.delete(msg.id);
     }
-    ```
-    `capabilities` is what you request. What the plugin gets is what the user
-    approves.
-  </Step>
-  <Step title="Write the module">
-    ```ts main.ts
-    const enc = new TextEncoder();
-    const dec = new TextDecoder();
-    let nextId = 1;
-    const pending = new Map<number, (msg: any) => void>();
+  }
+})();
 
-    // One reader for the whole process: replies and pushes share the stream.
-    (async () => {
-      let buf = "";
-      for await (const chunk of Deno.stdin.readable) {
-        buf += dec.decode(chunk);
-        let i: number;
-        while ((i = buf.indexOf("\n")) >= 0) {
-          const line = buf.slice(0, i);
-          buf = buf.slice(i + 1);
-          if (!line.trim()) continue;
-          const msg = JSON.parse(line);
-          if (msg.id === undefined) continue; // a push; a reply always has an id
-          pending.get(msg.id)?.(msg);
-          pending.delete(msg.id);
-        }
-      }
-    })();
+function call(method: string, params: unknown = {}): Promise<any> {
+  const id = nextId++;
+  const p = new Promise<any>((resolve) => pending.set(id, resolve));
+  Deno.stdout.write(enc.encode(JSON.stringify({ id, method, params }) + "\n"));
+  return p;
+}
 
-    function call(method: string, params: unknown = {}): Promise<any> {
-      const id = nextId++;
-      const p = new Promise<any>((resolve) => pending.set(id, resolve));
-      Deno.stdout.write(enc.encode(JSON.stringify({ id, method, params }) + "\n"));
-      return p;
-    }
+await call("log.write", { message: "hello from a plugin" });
+```
 
-    await call("log.write", { message: "hello from a plugin" });
-    ```
-  </Step>
-  <Step title="Grant it and run">
-    Open **Settings → Plugins**, switch on **Use Plugins**, and turn on `log`
-    on the plugin's row. A plugin with nothing granted is never started.
-    Press Play and look for the line in Cordial's output.
-  </Step>
+
+</Step>
+<Step title="Grant it and run">
+
+
+Open **Settings → Plugins**, switch on **Use Plugins**, and turn on `log`
+on the plugin's row. A plugin with nothing granted is never started.
+Press Play and look for the line in Cordial's output.
+
+
+</Step>
 </Steps>
 
 <Warning>
+
 Never write to standard output except protocol lines. `console.log` goes to the
 wire, and one unparseable line ends the conversation: Cordial stops the plugin.
 Use `console.error` for debugging; it lands in Cordial's own output.
+
 </Warning>
 
 ## Developing without packaging

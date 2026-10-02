@@ -1,5 +1,6 @@
-# ADR-009: Cordial is capturable, and ships no overlay injection point
-
+---
+title: "ADR-009: Cordial is capturable, and ships no overlay injection point"
+---
 **Status:** accepted
 **Related:** [ADR-001](/adr/ADR-001-in-process-hooking), [ADR-004](/adr/ADR-004-plugin-asset-overrides) (superseded by [ADR-010](/adr/ADR-010-plugin-asset-overlays)), [ADR-007](/adr/ADR-007-host-resources-are-brokered)
 

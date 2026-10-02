@@ -1,5 +1,6 @@
-# ADR-033: Roblox builds live in a keyed store, and a profile names one
-
+---
+title: "ADR-033: Roblox builds live in a keyed store, and a profile names one"
+---
 **Status:** accepted, partly implemented (see the end)
 **Date:** 2026-09-13
 **Extends:** [ADR-015](/adr/ADR-015-fetching-the-roblox-build), [ADR-025](/adr/ADR-025-fetching-from-a-third-party-mirror)

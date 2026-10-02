@@ -1,5 +1,6 @@
-# ADR-034: Symbol resolution asks the library, not a checked-in list
-
+---
+title: "ADR-034: Symbol resolution asks the library, not a checked-in list"
+---
 ## Status
 
 Accepted, 2026-09-13. Closes [#15](https://github.com/luohoa97/cordial/issues/15).

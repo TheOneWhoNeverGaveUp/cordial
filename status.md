@@ -1,5 +1,6 @@
-# Status: experimental, but playable
-
+---
+title: "Status: experimental, but playable"
+---
 Sign in, load a game, move around. This is the full feature table that used
 to live in the README, what changed recently in this fork, and three of the
 harder bugs it took to get here. See also [`CHANGELOG.md`](https://github.com/luohoa97/cordial/blob/main/CHANGELOG.md)

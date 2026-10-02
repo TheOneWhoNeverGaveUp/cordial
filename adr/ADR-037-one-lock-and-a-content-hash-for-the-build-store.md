@@ -1,5 +1,6 @@
-# ADR-037: The build store's three writers share one lock, and an entry now proves its own bytes
-
+---
+title: "ADR-037: The build store's three writers share one lock, and an entry now proves its own bytes"
+---
 **Status:** accepted, implemented
 **Date:** 2026-09-24
 **Extends:** [ADR-033](/adr/ADR-033-roblox-versions-are-a-keyed-store)

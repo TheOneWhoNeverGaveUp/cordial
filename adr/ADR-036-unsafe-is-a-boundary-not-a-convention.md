@@ -1,5 +1,6 @@
-# ADR-036: The unsafe/safe boundary is a lint, not a convention
-
+---
+title: "ADR-036: The unsafe/safe boundary is a lint, not a convention"
+---
 **Status:** Accepted, 2026-09-16
 
 ## Context

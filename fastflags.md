@@ -1,5 +1,6 @@
-# Changing FastFlags
-
+---
+title: "Changing FastFlags"
+---
 Roblox is configured by FastFlags, and Cordial lets you override any of them.
 Create `~/.local/share/cordial/profiles/<profile>/flags.json` (or point
 `CORDIAL_FLAGS` at another file) with a flat object. Installed as a Flatpak the

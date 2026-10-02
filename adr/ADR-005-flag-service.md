@@ -1,5 +1,6 @@
-# ADR-005: The flag service has two surfaces, because flags have two lifetimes
-
+---
+title: "ADR-005: The flag service has two surfaces, because flags have two lifetimes"
+---
 **Status:** accepted
 **Supersedes:** nothing
 **Related:** [ADR-003](/adr/ADR-003-plugin-isolation)

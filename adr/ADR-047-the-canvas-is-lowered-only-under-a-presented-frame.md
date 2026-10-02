@@ -1,5 +1,6 @@
-# ADR-047: The canvas is lowered only once GTK has presented a frame
-
+---
+title: "ADR-047: The canvas is lowered only once GTK has presented a frame"
+---
 **Status:** accepted
 **Date:** 2026-09-30
 **Related:** [ADR-011](/adr/ADR-011-wayland-and-libadwaita), issue #53

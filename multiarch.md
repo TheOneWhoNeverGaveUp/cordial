@@ -1,5 +1,6 @@
-# Multi-architecture strategy
-
+---
+title: "Multi-architecture strategy"
+---
 **Task B (§16.3). Status: decided.**
 
 ## Decision

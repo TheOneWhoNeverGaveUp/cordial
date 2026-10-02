@@ -1,5 +1,6 @@
-# ADR-010: Plugins may overlay Roblox's assets, non-destructively
-
+---
+title: "ADR-010: Plugins may overlay Roblox's assets, non-destructively"
+---
 **Status:** accepted
 **Supersedes:** [ADR-004](/adr/ADR-004-plugin-asset-overrides)
 **Related:** [ADR-001](/adr/ADR-001-in-process-hooking), [ADR-003](/adr/ADR-003-plugin-isolation), [ADR-009](/adr/ADR-009-capture-yes-overlay-injection-no)

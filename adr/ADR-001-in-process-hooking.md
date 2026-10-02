@@ -1,5 +1,6 @@
-# ADR-001: In-process hooking of the Roblox process
-
+---
+title: "ADR-001: In-process hooking of the Roblox process"
+---
 **Status:** Rejected
 **Date:** 2026-07-31
 **Supersedes:** nothing

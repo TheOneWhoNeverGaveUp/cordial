@@ -1,5 +1,6 @@
-# ADR-020: A plugin declares its preferences; Cordial draws them
-
+---
+title: "ADR-020: A plugin declares its preferences; Cordial draws them"
+---
 **Status:** proposed
 **Related:** [ADR-003](/adr/ADR-003-plugin-isolation), [ADR-007](/adr/ADR-007-host-resources-are-brokered), [ADR-011](/adr/ADR-011-wayland-and-libadwaita), [ADR-013](/adr/ADR-013-per-profile-configuration), [ADR-018](/adr/ADR-018-plugin-sub-sandboxing)
 

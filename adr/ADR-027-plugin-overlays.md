@@ -1,5 +1,6 @@
-# ADR-027: Plugins describe an overlay; Cordial draws it
-
+---
+title: "ADR-027: Plugins describe an overlay; Cordial draws it"
+---
 **Status:** proposed
 **Related:** [ADR-029](/adr/ADR-029-overlays-are-three-decisions), [ADR-001](/adr/ADR-001-in-process-hooking), [ADR-003](/adr/ADR-003-plugin-isolation), [ADR-007](/adr/ADR-007-host-resources-are-brokered), [ADR-010](/adr/ADR-010-plugin-asset-overlays), [ADR-011](/adr/ADR-011-wayland-and-libadwaita), [ADR-026](/adr/ADR-026-the-core-event-bus)
 

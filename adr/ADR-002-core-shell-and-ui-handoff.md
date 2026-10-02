@@ -1,5 +1,6 @@
-# ADR-002: Core shell, UI handoff, and the cold-start ordering
-
+---
+title: "ADR-002: Core shell, UI handoff, and the cold-start ordering"
+---
 **Status:** Accepted
 **Date:** 2026-07-31
 **Amends:** architecture spec §5 (bootstrap shell exception), §9b (feature parity), §15

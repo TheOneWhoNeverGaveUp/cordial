@@ -1,5 +1,6 @@
-# ADR-015: Cordial may fetch the Roblox build, and may never ship one
-
+---
+title: "ADR-015: Cordial may fetch the Roblox build, and may never ship one"
+---
 **Status:** accepted
 **Related:** [ADR-014](/adr/ADR-014-plugin-registry-and-unpacking),
 [ADR-010](/adr/ADR-010-plugin-asset-overlays),

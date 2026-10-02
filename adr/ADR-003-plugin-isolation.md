@@ -1,5 +1,6 @@
-# ADR-003: Plugins have no memory access to Cordial
-
+---
+title: "ADR-003: Plugins have no memory access to Cordial"
+---
 **Status:** accepted
 **Supersedes:** nothing
 **Related:** [ADR-001](/adr/ADR-001-in-process-hooking), [ADR-002](/adr/ADR-002-core-shell-and-ui-handoff)

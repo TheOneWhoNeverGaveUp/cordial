@@ -1,5 +1,6 @@
-# ADR-049: ETC2/EAC is decoded on the CPU where the driver lacks the feature
-
+---
+title: "ADR-049: ETC2/EAC is decoded on the CPU where the driver lacks the feature"
+---
 **Status:** accepted
 **Supersedes:** the "nothing is translated" half of [ADR-042](/adr/ADR-042-texture-format-query-observability); its counters and the test-only mask stand
 **Related:** [ADR-001](/adr/ADR-001-in-process-hooking), [ADR-042](/adr/ADR-042-texture-format-query-observability), [ADR-046](/adr/ADR-046-nvidia-is-gated-on-the-vendor-id)

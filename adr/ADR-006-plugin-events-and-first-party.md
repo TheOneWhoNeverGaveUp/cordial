@@ -1,5 +1,6 @@
-# ADR-006: Plugins may declare their own events, and some plugins ship with Cordial
-
+---
+title: "ADR-006: Plugins may declare their own events, and some plugins ship with Cordial"
+---
 **Status:** accepted
 **Related:** [ADR-002](/adr/ADR-002-core-shell-and-ui-handoff), [ADR-003](/adr/ADR-003-plugin-isolation), [ADR-005](/adr/ADR-005-flag-service)
 

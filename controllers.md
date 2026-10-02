@@ -1,5 +1,6 @@
-# Controllers work, and the on-screen button glyphs may name the wrong brand
-
+---
+title: "Controllers work, and the on-screen button glyphs may name the wrong brand"
+---
 Controller support is on by default. Cordial reads your pad from
 `/dev/input/js*` and hands its buttons and sticks to Roblox, and that part is
 tested.

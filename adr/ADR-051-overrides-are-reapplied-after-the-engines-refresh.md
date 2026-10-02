@@ -1,5 +1,6 @@
-# ADR-051: Overrides are handed to the engine again after its own settings refresh
-
+---
+title: "ADR-051: Overrides are handed to the engine again after its own settings refresh"
+---
 **Status:** accepted
 **Date:** 2026-10-01
 **Related:** [ADR-001](/adr/ADR-001-in-process-hooking), [ADR-005](/adr/ADR-005-flag-service), [ADR-044](/adr/ADR-044-settings-reach-a-running-game)

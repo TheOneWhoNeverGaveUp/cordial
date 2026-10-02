@@ -1,5 +1,6 @@
-# ADR-045: One report screen, outside Settings, and a notice on X11
-
+---
+title: "ADR-045: One report screen, outside Settings, and a notice on X11"
+---
 **Status:** accepted
 **Date:** 2026-09-30
 **Related:** [ADR-011](/adr/ADR-011-wayland-and-libadwaita), [ADR-024](/adr/ADR-024-x11-is-supported-again), [ADR-030](/adr/ADR-030-reports-arrive-from-discord)

@@ -1,5 +1,6 @@
-# ADR-030: Reports arrive from Discord, as forms rather than as messages
-
+---
+title: "ADR-030: Reports arrive from Discord, as forms rather than as messages"
+---
 **Status:** Accepted
 **Date:** 2026-09-03
 **Related:** [ADR-017](/adr/ADR-017-sober-issue-corpus), [ADR-048](/adr/ADR-048-labels-and-edits-from-discord)

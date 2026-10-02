@@ -1,5 +1,6 @@
-# ADR-017: A local, incremental corpus of Sober's issue tracker
-
+---
+title: "ADR-017: A local, incremental corpus of Sober's issue tracker"
+---
 **Status:** accepted
 **Related:** [ADR-008](/adr/ADR-008-plugins-are-typescript-on-deno), [ADR-015](/adr/ADR-015-fetching-the-roblox-build)
 

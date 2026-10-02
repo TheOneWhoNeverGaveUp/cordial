@@ -1,5 +1,6 @@
-# ADR-019: A development control surface, in coordinates and pixels
-
+---
+title: "ADR-019: A development control surface, in coordinates and pixels"
+---
 **Status:** accepted
 **Related:** [ADR-001](/adr/ADR-001-in-process-hooking), [ADR-003](/adr/ADR-003-plugin-isolation), [ADR-007](/adr/ADR-007-host-resources-are-brokered), [ADR-011](/adr/ADR-011-wayland-and-libadwaita), [ADR-012](/adr/ADR-012-profiles-and-instances)
 

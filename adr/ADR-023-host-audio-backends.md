@@ -1,5 +1,6 @@
-# ADR-023: PipeWire is the primary audio backend, and the others go behind a seam
-
+---
+title: "ADR-023: PipeWire is the primary audio backend, and the others go behind a seam"
+---
 **Status:** accepted
 **Related:** [ADR-011](/adr/ADR-011-wayland-and-libadwaita), [`docs/multiarch.md`](/multiarch)
 

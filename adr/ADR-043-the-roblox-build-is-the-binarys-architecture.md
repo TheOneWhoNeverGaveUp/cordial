@@ -1,5 +1,6 @@
-# ADR-043: The Roblox build's architecture is the binary's, and choosing another needs a second runtime
-
+---
+title: "ADR-043: The Roblox build's architecture is the binary's, and choosing another needs a second runtime"
+---
 **Status:** accepted; decision 5 and the premise of decision 3 superseded by [ADR-053](/adr/ADR-053-vr-is-a-mode-of-the-android-runtime). The reasoning below is kept: it was right about a second `cordial-run` under qemu-user, which is not what the VR mode does.
 **Date:** 2026-09-30
 **Related:** [ADR-001](/adr/ADR-001-in-process-hooking), [ADR-033](/adr/ADR-033-roblox-versions-are-a-keyed-store), [ADR-037](/adr/ADR-037-one-lock-and-a-content-hash-for-the-build-store), [ADR-039](/adr/ADR-039-a-runtime-backend-seam-and-why-macos-waits)

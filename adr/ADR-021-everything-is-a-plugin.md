@@ -1,5 +1,6 @@
-# ADR-021: Everything is a plugin; code is a property, not a category
-
+---
+title: "ADR-021: Everything is a plugin; code is a property, not a category"
+---
 **Status:** proposed
 **Related:** [ADR-003](/adr/ADR-003-plugin-isolation), [ADR-007](/adr/ADR-007-host-resources-are-brokered), [ADR-010](/adr/ADR-010-plugin-asset-overlays), [ADR-013](/adr/ADR-013-per-profile-configuration), [ADR-014](/adr/ADR-014-plugin-registry-and-unpacking), [ADR-020](/adr/ADR-020-declarative-plugin-preferences)
 

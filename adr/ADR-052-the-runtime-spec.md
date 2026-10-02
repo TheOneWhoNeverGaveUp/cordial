@@ -1,5 +1,6 @@
-# ADR-052: Launcher features reach runtimes through a published spec, and Cordial lists only its own
-
+---
+title: "ADR-052: Launcher features reach runtimes through a published spec, and Cordial lists only its own"
+---
 **Status:** accepted as design; implementation not started.
 **Date:** 2026-10-01
 **Supersedes:** the launching design in [ADR-050](/adr/ADR-050-other-runtimes-are-launched-not-built) ("launch only, features do not carry over"). ADR-050's reasoning about why Cordial builds no macOS runtime stands.
