@@ -171,5 +171,14 @@
       "github": "https://github.com/luohoa97/cordial",
       "discord": "https://discord.gg/qJzU3Xfr9b"
     }
+  },
+  "contextual": {
+    "options": [
+      "copy",
+      "view",
+      "claude",
+      "chatgpt"
+    ],
+    "display": "header"
   }
 }
