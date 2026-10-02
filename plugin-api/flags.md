@@ -102,7 +102,7 @@ A live write would need access to the running engine's flag table, which [ADR-00
 
 <Info>
 
-A `DF*` override in your `flags.json` governs about the first two seconds. The engine fetches Roblox's own settings document 1.6 to 2.3 s in and reapplies it over the top, so any `DF*` key that document contains is reverted while the client is still starting. Keys it does not contain keep your value for the whole run. Measured in both directions inside one run, with a control. A startup flag is the stronger surface, not the weaker one.
+A `DF*` override in your `flags.json` governs about the first two seconds. The engine fetches Roblox's own settings document 1.6 to 2.3 s in and reapplies it over the top, so any `DF*` key that document contains is reverted while the client is still starting. Keys it does not contain keep your value for the whole run. Measured in both directions inside one run, with a control. A startup flag is the stronger surface, not the weaker one. Why: [ADR-051](/adr/ADR-051-overrides-are-reapplied-after-the-engines-refresh).
 
 </Info>
 
