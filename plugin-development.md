@@ -5,32 +5,19 @@ icon: "code"
 ---
 ## What plugins are for
 
-Cordial is the launcher and runtime around Roblox's Android client. A plugin
-extends **Cordial**: it reacts to what the client is doing and asks Cordial to
-do something about it. Discord status from the current game, a FastFlag preset
-chosen in a settings page, a desktop notification when a server changes, a
-texture pack. A plugin that only applies something once at startup can usually
-be a plain file instead; code earns its place when it watches, decides and
-acts.
+A plugin extends **Cordial**: it reacts to what the client is doing and asks Cordial to do something about it. Discord status from the current game, a FastFlag preset, a desktop notification when a server changes, a texture pack. If all you need is to apply something once at startup, a plain file is usually enough. Code earns its place when it watches, decides and acts.
 
-What a plugin can never do is reach into Roblox. There is no API for running
-code in the game, reading or writing its memory, or injecting scripts, and
-there never will be ([ADR-001](/adr/ADR-001-in-process-hooking),
-[ADR-003](/adr/ADR-003-plugin-isolation)). Those things are not disabled; they
-are absent, so no plugin can ask for them.
+<Info>
 
-## The model in three sentences
+A plugin can never reach into Roblox. There is no API for running code in the game, reading or writing its memory, or injecting scripts, and there never will be. Those things are absent, not disabled, so no plugin can ask for them. Why: [ADR-001](/adr/ADR-001-in-process-hooking), [ADR-003](/adr/ADR-003-plugin-isolation).
 
-A plugin is a folder with a `plugin.json` and, usually, one TypeScript module.
-Cordial runs the module under Deno with **no** Deno permissions, so it cannot
-open a file, a socket or a program, and talks to it in newline-delimited JSON
-over standard input and output. Everything a plugin does is a request to
-Cordial, and Cordial carries it out only if the user granted the
-[capability](/plugin-api#the-fourteen-capabilities) it needs, in that profile.
+</Info>
 
-That last part is deliberate: a plugin never holds the resource
-([ADR-007](/adr/ADR-007-host-resources-are-brokered)). To set Discord status it
-sends Cordial the text, and Cordial owns the connection to Discord.
+## How it works
+
+A plugin is a folder with a `plugin.json` and, usually, one TypeScript module. Cordial runs the module under Deno with **no** Deno permissions, so it cannot open a file, a socket or a program. It talks to Cordial in newline-delimited JSON over standard input and output.
+
+Everything a plugin does is a request to Cordial, carried out only if the user granted the [capability](/plugin-api/capabilities#the-fifteen-capabilities) it needs, in that profile. The plugin never holds the resource: to set Discord status it sends the text, and Cordial owns the connection. Why: [ADR-007](/adr/ADR-007-host-resources-are-brokered).
 
 ## A plugin in five minutes
 
@@ -125,23 +112,18 @@ Use `console.error` for debugging; it lands in Cordial's own output.
 
 ## Developing without packaging
 
-Instead of copying into the plugins folder, use **Settings → Plugins → Add a
-plugin folder…** and pick the folder that holds `plugin.json`. It is listed as
-**Development**, and changes are picked up the next time you press Play.
-Installing, enabling, disabling and granting reach a running client within
-about a second; FastFlags written with `flags.set` wait for the next launch,
-because Roblox reads most flags once at startup.
+Instead of copying into the plugins folder, use **Settings → Plugins → Add a plugin folder…** and pick the folder that holds `plugin.json`. It is listed as **Development**, and edits inside it reload as you save. Adding or removing the folder takes effect the next time you press Play. FastFlags written with `flags.set` wait for the next launch too, because Roblox reads most flags once at startup. Details: [Installing plugins](/plugins#load-a-plugin-from-a-folder).
 
 ## What a plugin can use
 
 | Area | Capabilities | Reference |
 |---|---|---|
-| FastFlags | `flags.read`, `flags.write` | [FastFlags](/plugin-api#fastflags) |
-| The client | `lifecycle.read`, `state.read` | [Events](/plugin-api#events) |
-| Effects | `presence.set`, `notify.send`, `url.open`, `log` | [The rest of the surface](/plugin-api#the-rest-of-the-surface) |
+| FastFlags | `flags.read`, `flags.write` | [FastFlags](/plugin-api/flags) |
+| The client | `lifecycle.read`, `state.read` | [Events](/plugin-api/events) |
+| Effects | `presence.set`, `notify.send`, `url.open`, `log` | [The rest of the surface](/plugin-api/surface) |
 | Assets | `assets.override`, or an `overlay/` folder with no code | [Asset overrides](/asset-overrides) |
-| Its own data | `settings.read`, `settings.write` | [Settings and preferences](/plugin-api#settings-and-preferences-are-two-different-things) |
-| Other plugins | `events.declare`, `events.publish`, `events.subscribe` | [Plugin-declared events](/plugin-api#plugin-declared-events) |
+| Its own data | `settings.read`, `settings.write` | [Settings and preferences](/plugin-api/surface#settings-and-preferences) |
+| Other plugins | `events.declare`, `events.publish`, `events.subscribe` | [Plugin-declared events](/plugin-api/events#plugin-declared-events) |
 
 A plugin can also declare **preferences** (switches, numbers, choices, text) in
 `plugin.json`. Cordial draws the settings page and hands the answers to the
