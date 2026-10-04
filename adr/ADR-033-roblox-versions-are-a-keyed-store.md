@@ -2,6 +2,7 @@
 title: "ADR-033: Roblox builds live in a keyed store, and a profile names one"
 ---
 **Status:** accepted, partly implemented (see the end)
+**Amended by:** [ADR-054](https://github.com/luohoa97/cordial/blob/main/docs/adr/ADR-054-cordial-owns-its-roblox-builds.md) (launches resolve from the store; Sober is an import; 2026-10-04)
 **Date:** 2026-09-13
 **Extends:** [ADR-015](/adr/ADR-015-fetching-the-roblox-build), [ADR-025](/adr/ADR-025-fetching-from-a-third-party-mirror)
 **Related:** [ADR-012](/adr/ADR-012-profiles-and-instances), [ADR-013](/adr/ADR-013-per-profile-configuration)
