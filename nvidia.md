@@ -5,10 +5,14 @@ icon: "microchip"
 ---
 <Warning>
 
-**Cordial has not been run on an NVIDIA GPU.** Nobody working on it has one, so
-none of this is tested on NVIDIA hardware. It is what people running the same
-Roblox engine (through Sober) have reported, what Cordial does about the
-reports it can act on, and what to try. Where something is a guess it says so.
+**Most of this page is untested on NVIDIA hardware.** Two users have
+reported runs: driver 610.57 in the Flatpak (2026-10-01, fullscreen in and
+out held), and an RTX 4070 on 615.71.09 under KDE on Wayland (2026-10-03),
+which booted and rendered, got through one resize and fullscreen session,
+and crashed once at startup in eight launches. Nothing below has been run on
+a hybrid laptop or a 535/550 driver. What follows is what people running the same Roblox engine (through
+Sober) have reported, what Cordial does about the reports it can act on, and
+what to try. Where something is a guess it says so.
 
 </Warning>
 
@@ -117,6 +121,15 @@ above 2 crashed one:
 
 The "video memory: 64 MiB" line in the log is the engine's fixed figure on every
 vendor, not a sign your card is misread.
+
+**There is no known way to raise it, and the figure is not what allocation is
+decided on.** Measured 2026-10-03 on a 12 GiB RTX 4070: `DFIntEstimatedGmaSafeVideoMemoryMB`,
+the one flag name in Roblox's own settings document that speaks of video memory,
+moved nothing — the line still read `caps.videoMemory = 67108864` with the flag
+set to 8192, in a run where override delivery was proven in the same session
+(`DFIntTaskSchedulerTargetFps=30` holding 30.0 presents a second). A relayed
+Roblox maintainer statement (Sober #2077) says the figure is hard-coded and not
+what allocation is decided on. Do not spend a session on it.
 
 ## What Cordial does not do
 

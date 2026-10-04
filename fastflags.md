@@ -175,7 +175,7 @@ Neither replaces the other. Frame pacing on FIFO caps you at your panel's rate w
 
 <Warning>
 
-Do not pick a cap above your display's refresh. On a 60 Hz output a cap of 90 presented about 31 frames a second and 240 about 36, against 57 to 60 with nothing set. That is one headless environment, and users on fast monitors report the opposite. Nothing above 240 is offered because a contributor reports the engine stops there; this project has no monitor that fast to check.
+Do not pick a cap above your display's refresh. On a 60 Hz output a cap of 90 presented about 31 frames a second and 240 about 36, against 57 to 60 with nothing set. That is one headless environment, and on a fast monitor the opposite holds: on a 240 Hz output with an NVIDIA GPU, `DFIntTaskSchedulerTargetFps=240` presented 216-232 frames a second against a flat 59.9 with the engine's own target (measured 2026-10-03). Nothing above 240 is offered because a contributor reports the engine stops there.
 
 </Warning>
 
