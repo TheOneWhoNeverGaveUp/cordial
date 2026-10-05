@@ -54,11 +54,90 @@ motion during the hold, and the idle readings themselves vary from 0.001 to
 0.098. A better score needs the character's position, not the whole frame,
 and a run where movement is known to work, scored the same way.
 
+## What decides it: input around the join (2026-10-05)
+
+One signed-in `CordialTest` client for the Steal An Egg joins, a second launch
+for AI Town, nested headless sway, every join made by clicking Play on the game
+page. Movement is scored by a screenshot pair across a 2.5 s hold of W beside an
+idle pair, and every pair was read by eye, because UI animation and other
+players' speech bubbles fool the pixel score in a busy place. A respawn at the
+start of the first session restored movement, which is the positive control for
+the instrument. Input is driven only through the development control socket.
+
+Steal An Egg, events hand-driven:
+
+| What reached the engine around the join | Joins | Character walked |
+|---|---|---|
+| nothing | 9 | 0 |
+| pointer motion from the click until the load finished | 4 | 4 |
+| one move at the load, to where the pointer already was | 2 | 2 |
+| one move at the load, to somewhere else | 2 | 2 |
+| pointer motion for five seconds starting at the load | 2 | 2 |
+| shift key taps until the load finished | 2 | 2 |
+| pointer motion starting ten seconds after the load | 3 | 0 |
+
+AI Town, same client, with the hovers `NewGameSeed` sends switched off (`devctl
+gameseed off`) and the events hand-driven, or with them on:
+
+| What reached the engine around the join | Joins | Character walked |
+|---|---|---|
+| nothing (switch off) | 4 | 0 |
+| one move at the load | 2 | 0 |
+| first built schedule: once a second from the load for six seconds | 7 | 4 |
+| pointer motion from the click until the load | 3 | 3 |
+| pointer motion for five seconds from the load | 1 | 1 |
+| a hover every 250 ms from the click until six seconds after the load | 5 | 5 |
+
+Things that did **not** bring movement back once it was dead: opening and closing
+the Escape menu, moving the mouse, clicking the world, opening and closing the
+game's own shop, scrolling the wheel. Respawning did.
+
+Roblox's own Settings, View & Controls, lacked **Movement Mode** in the first
+game in the dead state *and* after the respawn that fixed it, so its absence is
+not a sign of the state. The Escape menu showed keyboard hints (`L`, `R`, `ESC`)
+in the dead state, so the interface did think a keyboard was in use.
+
+What that says, `INFERRED`: the movement controls are chosen once, around
+spawn, from the input the new DataModel has seen so far, and a DataModel that has
+seen none gets the scheme a phone would. Input has to arrive while it is
+deciding. In AI Town the world is on screen about a second after the load
+callback and a single move at the load was not enough there, where it was in
+Steal An Egg, so the decision can fall before the callback. The mechanism has
+not been observed. It would also explain why joining from a link seems safer: a
+real pointer usually moves while the place loads.
+
+What was ruled out on the Cordial side: every pointer event goes out as
+`SOURCE_MOUSE`/`TOOL_TYPE_MOUSE`, keys go through `nativePassKeyEvent` which
+carries no device, and the engine asks for neither an `InputDevice` nor a
+keyboard `Configuration`. mocktail sends the same natives with
+`isMouseDevice`/`isKeyboardDevice` true and `isTouchDevice` false.
+
+Not measured: a join from a link with no input at all (`devctl joinplace` only
+works under `--app-bridge`, so it could not be run inside the same client), a
+real pointer, X11, a third place, or the second built schedule below against a
+join, which needs a launch the session had used up.
+
+## The fix on the branch
+
+`input::NewGameSeed` hands the engine a zero-delta pointer hover at the last
+place a pointer was seen, four times a second from the engine's
+experience-start announcement until eight seconds after the last thing it
+announced, which for a join is its load. Not sent when no pointer has ever been
+seen, so a touchscreen-only machine is not told it has a mouse. The decision is
+a pure function with tests; the delivery is the same native a real mouse move
+uses. `CORDIAL_NO_GAME_SEED=1` or `gameseed off` on the control socket turns it
+off, which is how the table above had a control inside one session.
+
+The first schedule on the branch (once a second, from the load) was run and
+fixed four of seven AI Town joins, which is why it was replaced with the
+hand-driven one that fixed five of five. That second schedule is built but
+unrun.
+
 ## Still open
 
-- Whether any Cordial lever moves the control scheme at all.
-- Whether the Movement Mode list in Roblox's settings shows a touch or
-  click-to-move mode in the dead state, and whether changing it brings WASD
-  back. The reporter on #29 has been asked; nobody has looked here yet.
-- A run with `CORDIAL_GAMEPAD=0`, since a gamepad being reported may change the
-  scheme the engine picks. `INFERRED`, not run.
+- Whether the built 250 ms schedule reproduces the hand-driven arms.
+  `INFERRED` until a join made with it, with no other input, walks.
+- Whether the Movement Mode list in Roblox's settings means anything here.
+  `Set by developer` hides it in some experiences, which this one may do.
+- A run with `CORDIAL_GAMEPAD=0` is no longer interesting: the reporter has no
+  controller and reproduces it with controllers off.
