@@ -300,8 +300,8 @@ package() {
   # missing one is a blank icon in the task switcher on the one day nobody is
   # watching for it. A test in that file asserts both exist and are square.
   local _icons="usr/share/icons/hicolor/scalable/apps"
-  install -Dm644 "packaging/icons/hicolor/scalable/apps/io.github.luohoa97.Cordial.svg" \
-    "$pkgdir/$_icons/io.github.luohoa97.Cordial.svg"
+  install -Dm644 "packaging/icons/hicolor/scalable/apps/io.github.luohoa97.CordialZ.svg" \
+    "$pkgdir/$_icons/io.github.luohoa97.CordialZ.svg"
   install -Dm644 "packaging/icons/hicolor/scalable/apps/io.github.luohoa97.Cordial.Frostbite.svg" \
     "$pkgdir/$_icons/io.github.luohoa97.Cordial.Frostbite.svg"
 

@@ -243,8 +243,8 @@ install -Dpm 0755 target/release/cordial-run   %{buildroot}%{_bindir}/cordial-ru
 # twice-a-year name in crates/cordial-shell/src/branding.rs, and a missing one
 # is a blank icon in the task switcher on the one day nobody is watching for it.
 # A test in that file asserts both exist and are square.
-install -Dpm 0644 packaging/icons/hicolor/scalable/apps/io.github.luohoa97.Cordial.svg \
-    %{buildroot}%{_datadir}/icons/hicolor/scalable/apps/io.github.luohoa97.Cordial.svg
+install -Dpm 0644 packaging/icons/hicolor/scalable/apps/io.github.luohoa97.CordialZ.svg \
+    %{buildroot}%{_datadir}/icons/hicolor/scalable/apps/io.github.luohoa97.CordialZ.svg
 install -Dpm 0644 packaging/icons/hicolor/scalable/apps/io.github.luohoa97.Cordial.Frostbite.svg \
     %{buildroot}%{_datadir}/icons/hicolor/scalable/apps/io.github.luohoa97.Cordial.Frostbite.svg
 
@@ -373,7 +373,7 @@ appstream-util validate-relax --nonet \
 %{_bindir}/cordial-run
 %{_datadir}/applications/io.github.luohoa97.Cordial.desktop
 %{_datadir}/metainfo/io.github.luohoa97.Cordial.metainfo.xml
-%{_datadir}/icons/hicolor/scalable/apps/io.github.luohoa97.Cordial.svg
+%{_datadir}/icons/hicolor/scalable/apps/io.github.luohoa97.CordialZ.svg
 %{_datadir}/icons/hicolor/scalable/apps/io.github.luohoa97.Cordial.Frostbite.svg
 
 %changelog

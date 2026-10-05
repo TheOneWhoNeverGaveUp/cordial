@@ -795,6 +795,35 @@ pub fn pump(duration: std::time::Duration, game_activity_handle: Option<i64>) {
     // The periodic health line's own bookkeeping. See where it prints.
     let mut heartbeat_at = std::time::Instant::now();
     let mut heartbeat_presents: u64 = 0;
+    // Low-rate floor bookkeeping. `None` means "not currently low", so the
+    // duration is measured from the first low heartbeat rather than from launch.
+    let mut low_rate_since: Option<std::time::Instant> = None;
+    let mut low_rate_reported = false;
+    // Presents/sec at or below which the client is presenting but not drawing.
+    // 1.0/s is the idle throttle's own measured rate; 2.0 sits above it and below
+    // anything a running game produces. Measured on an RTX 4050 laptop, Wayland,
+    // driver 610.57.04: 24 of 36 heartbeats at or above 2.0/s, 12 at or below,
+    // ten of those at exactly 1.0/s, and only two (1.4, 1.5) in between. 2.0
+    // sits in that gap.
+    const STALL_RATE_FLOOR_PRESENTS_PER_SEC: f64 = 2.0;
+    // How long the floor must hold before it is reported, so a single slow
+    // sample -- a place loading, a window resize -- cannot trip it.
+    const LOW_RATE_HOLD_SECS: u64 = 60;
+    // Presents/sec above which a stall is considered over and the detector
+    // re-arms. The idle throttle holds a steady 1.0/s, so this has to sit above
+    // it: 1.0/s is "alive but idle", not "recovered". 2.0/s is a game drawing.
+    const STALL_REARM_PRESENTS_PER_SEC: f64 = 2.0;
+    // And it has to be sustained, so one lucky frame does not re-arm the fuse.
+    const STALL_REARM_WINDOW_SECS: f64 = 2.0;
+    let mut rearm_window_presents: u64 = 0;
+    let mut rearm_window_at = std::time::Instant::now();
+    // **A breaker, not a fuse.** `stall_reported` used to be a `bool` that
+    // latched true on the first five-second stall and never reset, so one freeze
+    // taught the client that freezes had happened and it stopped watching for the
+    // rest of the session. Measured: two stalls occurred 3.5 minutes apart
+    // (after 545 frames, then after 1038) and only the first was ever printed.
+    // The latch has no reset path; it is set once and read for the process
+    // lifetime. Re-arm it on measured recovery instead.
     let mut stall_reported = false;
     let mut recovery_tried = false;
     let join_watch = JOIN_REQUESTED.load(Ordering::Relaxed);
@@ -1127,11 +1156,56 @@ pub fn pump(duration: std::time::Duration, game_activity_handle: Option<i64>) {
             let now = super::glcount::QUEUE_PRESENT.load(Ordering::Relaxed);
             let secs = heartbeat_at.elapsed().as_secs_f64();
             let drawn = now.saturating_sub(heartbeat_presents);
+            let rate = drawn as f64 / secs;
             println!(
-                "[cordial] health: {drawn} presents in {secs:.0}s ({:.1}/s), {now} total{}",
-                drawn as f64 / secs,
+                "[cordial] health: {drawn} presents in {secs:.0}s ({rate:.1}/s), {now} total{}",
                 if drawn == 0 { " -- nothing was drawn" } else { "" }
             );
+
+            // **The floor under the idle throttle.**
+            //
+            // The stall detector below cannot see this failure at all: it fires
+            // on presents *stopping*, and this is presents continuing at exactly
+            // the throttle rate. Measured on an RTX 4050 laptop, Wayland, driver
+            // 610.57.04, one session: the client held 56-73 presents/s for
+            // nineteen minutes, then fell in one step to 8.9/s and then to a flat
+            // 1.0/s and stayed there for ten consecutive heartbeats. No
+            // zero-presents event ever fired, so nothing was reported.
+            //
+            // 1.0/s is the throttle working correctly -- in a menu, or whenever
+            // there is no input. The same number while an experience is running
+            // is a client that has stopped drawing without ever stopping
+            // presenting. Those cannot be told apart from presents alone, so this
+            // only *reports* and leaves the cause open: deciding "loaded" is the
+            // caller's, not this loop's.
+            //
+            // The threshold is measured, not guessed. 36 heartbeats from that
+            // session: 24 samples at or above 2.0/s, 12 at or below, ten of those
+            // at exactly 1.0/s, and only two between (1.4, 1.5). 2.0 sits in that
+            // gap, so it does not fire on a genuinely drawing client.
+            if rate <= STALL_RATE_FLOOR_PRESENTS_PER_SEC {
+                let since = low_rate_since.get_or_insert_with(std::time::Instant::now);
+                let held = since.elapsed();
+                if held.as_secs() >= LOW_RATE_HOLD_SECS && !low_rate_reported {
+                    low_rate_reported = true;
+                    println!(
+                        "[android] the engine is presenting at only {rate:.1}/s for {:.0}s, which is \
+                         the idle throttle's own rate. If an experience is loaded this is a client \
+                         that has stopped drawing without ever stopping presenting; if nothing is \
+                         loaded, or nothing is being asked of it, it is the throttle working.",
+                        held.as_secs_f64()
+                    );
+                    flush_stdout();
+                }
+            } else if low_rate_reported {
+                println!(
+                    "[android] the presenting rate is back to {rate:.1}/s; the low-rate warning \
+                     is re-armed"
+                );
+                low_rate_since = None;
+                low_rate_reported = false;
+            }
+
             flush_stdout();
             heartbeat_at = std::time::Instant::now();
             heartbeat_presents = now;
@@ -1161,6 +1235,15 @@ pub fn pump(duration: std::time::Duration, game_activity_handle: Option<i64>) {
             if now != stall_presents {
                 stall_presents = now;
                 stall_since = std::time::Instant::now();
+                // Re-arm the detector on measured recovery. `stall_since` is
+                // reset above, so the rate has to be measured over the re-arm
+                // window's own elapsed time -- dividing by `stall_since` here
+                // would divide by ~0 and read any single frame as infinite
+                // throughput, which is the latch behaviour this replaces.
+                if stall_reported {
+                    rearm_window_presents = now;
+                    rearm_window_at = std::time::Instant::now();
+                }
             }
             // **Ask the app bridge to start the Lua app again.**
             //

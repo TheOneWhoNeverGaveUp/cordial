@@ -115,8 +115,8 @@ Besides Roblox's own flags, these names mean something to Cordial. The `Cordial`
 | `FFlagUserLaunchedWithBloxstrap` | `True` (default) | Tells games the launcher speaks BloxstrapRPC, which Discord presence needs. Set `"False"` to retract the claim; games can then tell they are not under a launcher that implements it. It is not an engine flag. That a game then answers yes is `INFERRED`. |
 | `DFIntTaskSchedulerTargetFps` | whole number | The engine's own frame target. **Settings → General → Graphics → Frame rate limit** sets it for you. |
 | `CordialFrameRateLimit` | `display`, or a number of fps | The Frame rate limit row, as a key a plugin can set. The row beats a plugin; your `flags.json` beats the row. |
-| `CordialPresentMode` | `off`, `auto`, `mailbox`, `immediate`, `uncapped`, `fifo`, `fifo-relaxed` | Vulkan present mode. The **Frame pacing** row sets it. A mode the driver does not offer leaves the engine's own choice. |
-| `CordialGraphicsBackend` | `automatic`, `vulkan`, `gles` | Which graphics backend to offer the engine. The **Graphics** row beats a plugin's request. |
+| `CordialPresentMode` | `off`, `auto`, `mailbox`, `immediate`, `uncapped`, `fifo`, `fifo-relaxed` | **Inert in this fork.** Was the Vulkan present mode; the Vulkan backend is disconnected, so the **Frame pacing** row sets nothing. |
+| `CordialGraphicsBackend` | `automatic`, `vulkan`, `gles` | Which graphics backend to offer the engine. The **Graphics** row beats a plugin's request. In this fork the answer is always GLES3; `vulkan` fires the sentinel. |
 | `CordialDeviceProfile` | `pc-windows-11`, `roblox-app`, `android-tablet`, `meta-quest` | Which device Cordial says it is. **Has no effect from `flags.json` today**; the Graphics optimisation row sets it, through `CORDIAL_DEVICE_PROFILE`. `INFERRED` from reading the code: nothing outside the flag module calls the reader. |
 
 Graphics optimisation sets these flags, sized to your physical core count:

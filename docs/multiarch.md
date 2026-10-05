@@ -61,9 +61,10 @@ was kept, so it cannot be repeated from here.
 ## VR is the one translated build
 
 The Meta Quest build ships only `arm64-v8a`. The VR mode runs its engine under an
-in-process translator (dynarmic) inside the x86-64 `cordial-run`, with the host's
-own Vulkan driver and OpenXR runtime
+in-process translator (dynarmic) inside the x86-64 `cordial-run`
 ([ADR-053](adr/ADR-053-vr-is-a-mode-of-the-android-runtime.md), [VR](vr.md)).
-It is stored apart under `builds/arm64-v8a/`. It has been measured on Monado's
-simulated headset only: 90 frames/s at 90 Hz on the landing panel, 44 to 65 in
-game. Nothing has been measured on WiVRn or a real headset.
+It is stored apart under `builds/arm64-v8a/`. **The Vulkan half of the VR path
+is disconnected in this fork** — the guest's Vulkan translation fires the
+sentinel — so the measurements below (90 frames/s at 90 Hz on the landing
+panel, 44 to 65 in game, on Monado's simulated headset) are historical and
+no longer reproduce.

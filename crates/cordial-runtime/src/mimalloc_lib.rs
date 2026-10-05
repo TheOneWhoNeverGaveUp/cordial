@@ -5,11 +5,10 @@
 //! followed by roughly forty `mi_option_*=value` lines. `libroblox.so` does not
 //! link mimalloc — its own undefined-symbol table has zero `mi_`-prefixed
 //! entries (`docs/analysis/undefined-symbols.tsv`) — so whatever asks for it
-//! does so as a library the engine goes looking for at runtime, the same way it
-//! goes looking for Vulkan rather than linking it. Sober answers that lookup by
-//! shipping a real `libmimalloc.so` beside its binary; this does the same thing
-//! by vendoring mimalloc into Cordial itself and registering it as a virtual
-//! library, the same pattern `android::vulkan` uses.
+//! does so as a library the engine goes looking for at runtime. Sober answers
+//! that lookup by shipping a real `libmimalloc.so` beside its binary; this
+//! does the same thing by vendoring mimalloc into Cordial itself and
+//! registering it as a virtual library of its own.
 //!
 //! AGENTS.md is explicit that a stub must never lie about what it can do, and
 //! that applies with extra force here: mimalloc's option getters are cheap to

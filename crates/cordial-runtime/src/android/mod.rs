@@ -19,6 +19,8 @@ pub mod clipboard;
 pub mod config;
 pub mod editor_font;
 pub mod etc_decode;
+#[cfg(test)]
+mod etc_decode_gpu_test;
 pub mod frame_pacing;
 pub mod gamepad;
 pub mod gl;

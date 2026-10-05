@@ -641,9 +641,10 @@ fn performance_layer() -> Layer {
     Layer { source: Source::Performance, values }
 }
 
-/// The Settings row's frame-rate cap, alongside the display's own refresh and
-/// FIFO/MAILBOX ([`crate::android::vulkan`]) as the third lever `fastflags.md`
-/// says raising the frame rate takes.
+/// The Settings row's frame-rate cap, alongside the display's own refresh as
+/// the second lever `fastflags.md` says raising the frame rate takes. (The
+/// third, FIFO/MAILBOX, was a Vulkan present-mode setting and is gone with
+/// the Vulkan disconnect.)
 ///
 /// **The reset this has to survive, established rather than assumed.**
 /// `client_settings.rs`'s `apply_overrides` doc comment and
@@ -702,11 +703,10 @@ impl FrameRateLimit {
 /// [`FRAME_RATE_LIMIT_KEY`].
 pub const FRAME_RATE_LIMIT_ENV: &str = "CORDIAL_FRAME_RATE_LIMIT";
 
-/// The flag-layer key a plugin may set instead, on the same footing
-/// `android::vulkan::PRESENT_MODE_KEY` gives `CordialPresentMode`: a
-/// `Cordial`-prefixed name that rides this module's layering for precedence
-/// and provenance and that `client_settings.rs::is_roblox_flag` filters back
-/// out before anything reaches Roblox's settings document.
+/// The flag-layer key a plugin may set instead: a `Cordial`-prefixed name
+/// that rides this module's layering for precedence and provenance and that
+/// `client_settings.rs::is_roblox_flag` filters back out before anything
+/// reaches Roblox's settings document.
 pub const FRAME_RATE_LIMIT_KEY: &str = "CordialFrameRateLimit";
 
 /// What the shell's live-settings socket last asked for, if it has asked
@@ -725,8 +725,8 @@ pub fn set_live_frame_rate_limit(choice: Option<FrameRateLimit>) -> bool {
 
 /// Which choice is in force: a live change first, then the environment (what
 /// the shell sets at launch and a measurement run sets by hand), then the flag
-/// layers, then [`FrameRateLimit::Display`] -- the order [`performance`] and
-/// `android::vulkan::resolve_present_mode` already use, plus the socket on top.
+/// layers, then [`FrameRateLimit::Display`] -- the order [`performance`]
+/// already uses, plus the socket on top.
 pub fn frame_rate_limit() -> FrameRateLimit {
     if let Some(choice) = *LIVE_FRAME_RATE_LIMIT.lock().unwrap_or_else(|e| e.into_inner()) {
         return choice;
@@ -1694,7 +1694,7 @@ mod frame_rate_limit_tests {
             frame_rate_limit(),
             FrameRateLimit::Cap(165),
             "the environment must win over a flags.json entry, the same order \
-             performance() and resolve_present_mode() already use"
+             performance() already uses"
         );
 
         std::env::remove_var(FRAME_RATE_LIMIT_ENV);

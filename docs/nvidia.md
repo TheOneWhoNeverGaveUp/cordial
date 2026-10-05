@@ -19,26 +19,17 @@ thing you can do for this page.
 
 ## What Cordial does on NVIDIA
 
-It decides by the GPU the game is drawing on, not by whether an NVIDIA driver is
-loaded, so a laptop that renders on its Intel or AMD chip is left alone
-([ADR-046](adr/ADR-046-nvidia-is-gated-on-the-vendor-id.md)).
+**The runtime NVIDIA behaviours are disconnected in this fork**, with the
+Vulkan backend gone. What remains is the doctor: `cordial --doctor` and the
+report screen still check the driver series, whether a Flatpak's GL extension
+matches your driver, and whether `nvidia-drm` has `modeset` on
+([details](doctor.md#nvidia-lines)).
 
-- **Prints which GPU it uses** at start, for every vendor:
-  `[android] vulkan: physical device "..." vendor 0x10de`. `0x10de` is NVIDIA.
-- **Warns about driver series 535 and 550.** On Roblox builds from June 2026
-  those drivers were reported to crash the game the first time the window is
-  resized. Untested here.
-- **Asks again if the driver refuses to list the display's present modes**, the
-  `vkGetPhysicalDeviceSurfacePresentModesKHR failed` error some two-GPU laptops
-  hit on the first launch after boot. A guess: it may not help.
-- **Says so, in a Flatpak, if the sandbox's NVIDIA driver does not match your
-  machine's**, on the crash page and in `cordial --diagnostics` (the `Graphics`
-  line).
-- **Checks the same things in `cordial --doctor`** and the report screen: the
-  driver series, whether a Flatpak's GL extension matches your driver, and
-  whether `nvidia-drm` has `modeset` on ([details](doctor.md#nvidia-lines)).
-- **Adds a hint to the crash page** when the game stops after any of the above,
-  or after `RBXCRASH: OutOfMemory`, on an NVIDIA GPU.
+The behaviours below were runtime behaviours in the Vulkan path and are gone:
+printing which GPU the game uses at start (`[android] vulkan: physical device`),
+warning about driver series 535 and 550, retrying the present-modes query, and
+the crash-page hint. The doctor checks key off the host's own NVIDIA driver,
+not off the engine's Vulkan device, so they are unaffected.
 
 It does not switch renderer, window system or GPU for you.
 

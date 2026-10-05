@@ -269,8 +269,8 @@ install -Dm644 packaging/io.github.luohoa97.Cordial.desktop \
     "$appdir/usr/share/applications/io.github.luohoa97.Cordial.desktop"
 install -Dm644 packaging/io.github.luohoa97.Cordial.metainfo.xml \
     "$appdir/usr/share/metainfo/io.github.luohoa97.Cordial.metainfo.xml"
-install -Dm644 packaging/icons/hicolor/scalable/apps/io.github.luohoa97.Cordial.svg \
-    "$appdir/usr/share/icons/hicolor/scalable/apps/io.github.luohoa97.Cordial.svg"
+install -Dm644 packaging/icons/hicolor/scalable/apps/io.github.luohoa97.CordialZ.svg \
+    "$appdir/usr/share/icons/hicolor/scalable/apps/io.github.luohoa97.CordialZ.svg"
 install -Dm644 packaging/icons/hicolor/scalable/apps/io.github.luohoa97.Cordial.Frostbite.svg \
     "$appdir/usr/share/icons/hicolor/scalable/apps/io.github.luohoa97.Cordial.Frostbite.svg"
 
@@ -313,7 +313,7 @@ cp "$appdir/usr/share/applications/io.github.luohoa97.Cordial.desktop" \
 # matches the largest size Cordial's own icon theme directory would carry had
 # one been rendered, and is large enough not to look soft in a file manager.
 rsvg-convert --width 256 --height 256 \
-    packaging/icons/hicolor/scalable/apps/io.github.luohoa97.Cordial.svg \
+    packaging/icons/hicolor/scalable/apps/io.github.luohoa97.CordialZ.svg \
     -o "$appdir/io.github.luohoa97.Cordial.png"
 
 echo "==> bundling shared libraries with linuxdeploy"

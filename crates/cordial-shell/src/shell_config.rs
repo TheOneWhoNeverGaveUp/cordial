@@ -317,36 +317,26 @@ impl PointerAcceleration {
 
 /// Which Vulkan present mode the client asks the driver for.
 ///
-/// **It is a latency setting and a power setting at the same time, and those
-/// pull opposite ways.** FIFO queues one image per display refresh, so the GPU
-/// renders exactly the frames that get shown and wastes nothing -- and the
-/// cursor and camera lag the hand by however deep that queue is. MAILBOX has no
-/// queue to wait behind, it replaces the pending image, so it is the
-/// responsive one and it burns power drawing frames the display never scans
-/// out. IMMEDIATE does not synchronise at all: the lowest latency there is, and
-/// the one that tears.
+/// **Inert in this fork.** The Vulkan backend is disconnected, so
+/// `CORDIAL_PRESENT_MODE` is read by nothing and no present mode is ever
+/// asked for. The setting is kept -- and this row still offers the spellings
+/// -- so the failure is a stale row somebody can see and report rather than a
+/// setting that vanished and left a gap; removing it would be a larger
+/// change than the disconnect, and the honest statement is that it does
+/// nothing, not that it never existed.
 ///
-/// **MAILBOX is the default because the latency was measured and the power was
-/// not.** This shipped as FIFO for about an hour on the power argument, and the
-/// report came straight back -- "the mouse feels floaty and weird in roblox",
-/// then the control run, "switching back to Mailbox fixes the floaty fealing".
-/// The power cost of MAILBOX is real and nobody here has a watt meter; the
-/// latency cost of FIFO is something a person felt within minutes. FIFO is one
-/// row away for anyone who would rather pay it.
-///
-/// FIFO is also the only mode `VkSurfaceKHR` guarantees -- the other two may
-/// simply not be advertised, in which case
-/// `cordial_runtime::android::vulkan` leaves the engine's own choice alone
-/// rather than substituting something nobody asked for.
+/// What each mode meant, when it meant anything: FIFO queued one image per
+/// display refresh, so the GPU rendered exactly the frames that got shown
+/// and wasted nothing, at the cost of the cursor and camera lagging the
+/// hand by the queue depth. MAILBOX replaced the pending image instead of
+/// queueing, so it was the responsive one and burned power drawing frames
+/// the display never scanned out. IMMEDIATE did not synchronise at all: the
+/// lowest latency there is, and the one that tore.
 ///
 /// **[`PresentMode::Automatic`] is not a fourth mode, it is the absence of an
 /// opinion**, and it is here for the same reason `graphics`'s "automatic" is:
 /// an absent `CORDIAL_PRESENT_MODE` is the one state in which a plugin's
-/// `CordialPresentMode` entry counts (ADR-007, ADR-020). Without it, shipping
-/// this row would have quietly made a documented plugin capability
-/// unreachable for everybody, which is the kind of silent contradiction
-/// AGENTS.md asks to be argued in an ADR rather than introduced in a widget.
-/// Choosing Automatic still lands on FIFO when no plugin says otherwise.
+/// `CordialPresentMode` entry counts (ADR-007, ADR-020).
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Serialize, Deserialize)]
 #[serde(rename_all = "lowercase")]
 pub enum PresentMode {
@@ -390,14 +380,15 @@ impl PresentMode {
         }
     }
 
-    /// The word `cordial_runtime::android::vulkan::parse_present_mode` takes
-    /// out of `CORDIAL_PRESENT_MODE`, or `None` for Automatic.
+    /// The word the runtime's present-mode parser used to take out of
+    /// `CORDIAL_PRESENT_MODE`, or `None` for Automatic.
     ///
     /// `None` rather than the string "auto" because the two are not the same
     /// thing to the runtime's precedence rules -- an absent variable and an
     /// explicit `auto` both let a plugin through, but only an absent one keeps
     /// the launcher out of a decision it was not asked to make. Sending
-    /// nothing is the smaller claim.
+    /// nothing is the smaller claim. Inert in this fork, with the Vulkan
+    /// backend disconnected; see [`PresentMode`].
     pub fn as_env(self) -> Option<&'static str> {
         match self {
             PresentMode::Fifo => Some("fifo"),
@@ -698,9 +689,10 @@ pub struct ShellConfig {
     /// written to a file: the backend has to be settled before the engine's
     /// first `dlopen`, which is long before anything opens a profile.
     ///
-    /// `"automatic"` is the default and is not merely "Vulkan by another name" —
-    /// it is the absence of a user opinion, which is what lets a plugin have
-    /// one. See `graphics::resolve`.
+    /// `"automatic"` is the default. In this fork it means GLES3, full stop —
+    /// the Vulkan it used to reach for is disconnected, and selecting
+    /// `"vulkan"` fires the sentinel rather than quietly doing nothing. See
+    /// `graphics::resolve`.
     pub graphics: String,
     /// Which device Cordial says it is, and how hard the engine may push the
     /// machine's cores. See [`GraphicsOptimization`], which carries the whole
@@ -713,7 +705,8 @@ pub struct ShellConfig {
     #[serde(default)]
     pub graphics_optimization_mode: GraphicsOptimization,
     /// Which present mode the client asks the driver for. See [`PresentMode`],
-    /// which carries the reasoning and the reason FIFO is the default.
+    /// which carries the reasoning -- and the reason the setting is inert in
+    /// this fork.
     ///
     /// `#[serde(default)]`, so a `shell.json` written by an older Cordial --
     /// which had no such key at all -- loads rather than failing to parse, and

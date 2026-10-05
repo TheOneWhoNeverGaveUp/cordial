@@ -118,8 +118,8 @@ rustPlatform.buildRustPackage.override { stdenv = clangStdenv; } (finalAttrs: {
       install -Dm644 "$plugin/main.ts" "$out/share/cordial/plugins/$id/main.ts"
     done
 
-    install -Dm644 packaging/icons/hicolor/scalable/apps/io.github.luohoa97.Cordial.svg \
-      "$out/share/icons/hicolor/scalable/apps/io.github.luohoa97.Cordial.svg"
+    install -Dm644 packaging/icons/hicolor/scalable/apps/io.github.luohoa97.CordialZ.svg \
+      "$out/share/icons/hicolor/scalable/apps/io.github.luohoa97.CordialZ.svg"
     install -Dm644 packaging/icons/hicolor/scalable/apps/io.github.luohoa97.Cordial.Frostbite.svg \
       "$out/share/icons/hicolor/scalable/apps/io.github.luohoa97.Cordial.Frostbite.svg"
     install -Dm644 packaging/io.github.luohoa97.Cordial.desktop \

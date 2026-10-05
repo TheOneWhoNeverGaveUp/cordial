@@ -4572,11 +4572,25 @@ fn main() -> ExitCode {
                                         // resize being reported and the second
                                         // swapchain being rebuilt, not in
                                         // anything Cordial's own log shows.
-                                        if let Ok(ms) = std::env::var("CORDIAL_BRIDGE_DELAY_MS") {
-                                            if let Ok(ms) = ms.parse::<u64>() {
-                                                println!("  holding the bridge back {ms}ms before StartLuaAppDM");
-                                                std::thread::sleep(std::time::Duration::from_millis(ms));
-                                            }
+                                        // CORDIAL_LUA_DELAY_MS: hold the Lua app DataModel start
+                                        // until after the engine's first render step has run.
+                                        // The startup freeze (#92) is a race between that first
+                                        // render and the teardown startLuaApp_ begins once settings
+                                        // and flags load; when the render loses, the finalize thread
+                                        // waits for a task nothing posts. Delaying this call tilts
+                                        // the race. Measured over many signed-in launches, not a
+                                        // single run.
+                                        let lua_delay = std::env::var("CORDIAL_LUA_DELAY_MS")
+                                            .ok()
+                                            .and_then(|v| v.parse::<u64>().ok())
+                                            .or_else(|| {
+                                                std::env::var("CORDIAL_BRIDGE_DELAY_MS")
+                                                    .ok()
+                                                    .and_then(|v| v.parse::<u64>().ok())
+                                            });
+                                        if let Some(ms) = lua_delay {
+                                            println!("  holding the Lua app start back {ms}ms before StartLuaAppDM");
+                                            std::thread::sleep(std::time::Duration::from_millis(ms));
                                         }
                                         if std::env::var_os("CORDIAL_SKIP_LUA_DM").is_none() {
                                         if let Some(f) = lib.symbol(

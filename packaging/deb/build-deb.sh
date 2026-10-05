@@ -112,8 +112,8 @@ strip --strip-debug "$root/usr/bin/cordial-shell" "$root/usr/bin/cordial-run"
 # banner. Both of them: Frostbite is the twice-a-year name in
 # crates/cordial-shell/src/branding.rs, and a missing one is a blank icon in
 # the task switcher on the one day nobody is watching for it.
-install -Dm644 packaging/icons/hicolor/scalable/apps/io.github.luohoa97.Cordial.svg \
-    "$root/usr/share/icons/hicolor/scalable/apps/io.github.luohoa97.Cordial.svg"
+install -Dm644 packaging/icons/hicolor/scalable/apps/io.github.luohoa97.CordialZ.svg \
+    "$root/usr/share/icons/hicolor/scalable/apps/io.github.luohoa97.CordialZ.svg"
 install -Dm644 packaging/icons/hicolor/scalable/apps/io.github.luohoa97.Cordial.Frostbite.svg \
     "$root/usr/share/icons/hicolor/scalable/apps/io.github.luohoa97.Cordial.Frostbite.svg"
 

@@ -378,10 +378,13 @@ pub fn gpu(env: &Env, inputs: &Inputs) -> Vec<Check> {
 /// Whether a Vulkan loader and at least one driver manifest are present.
 ///
 /// The engine `dlopen`s `libvulkan.so.1` itself and, without one, falls
-/// through to OpenGL ES -- measured, see `cordial_runtime::graphics` -- so a
-/// missing driver is a warning and not a failure. **Presence only**: a
-/// manifest that names a library which will not load reads as healthy here,
-/// which is why [`vulkan_devices`] asks the loader for real.
+/// through to OpenGL ES, so a missing driver is a warning and not a failure.
+/// In this fork the `dlopen` is never answered at all -- the virtual sonames
+/// are deliberately unregistered -- so the engine always takes GLES3 and
+/// these checks describe the machine's Vulkan capability for its own sake.
+/// **Presence only**: a manifest that names a library which will not load
+/// reads as healthy here, which is why [`vulkan_devices`] asks the loader
+/// for real.
 fn vulkan_files(loader: bool, drivers: &[String], in_flatpak: bool) -> Check {
     match (loader, drivers.len()) {
         (true, 0) if in_flatpak => check(

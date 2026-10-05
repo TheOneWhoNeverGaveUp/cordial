@@ -103,9 +103,6 @@ const fn exit_presentation(
 /// ordering argument.
 const EARLY_EXIT_CHECK: std::time::Duration = std::time::Duration::from_secs(3);
 
-/// How long the "Roblox got stuck starting" line stays up on a restart.
-const RECOVERY_NOTICE: std::time::Duration = std::time::Duration::from_secs(6);
-
 /// How often a new client's log is read for the startup freeze (#92). Once a
 /// second is far more often than a five-second verdict needs, and the reading
 /// stops at the first decision, which a healthy start reaches in a few seconds.
@@ -1295,10 +1292,13 @@ fn start_attempt(
     // change made while it loads is sent once its socket exists.
     crate::live::register(instance.pid(), instance.live_socket.clone(), instance.launched_with.clone());
 
-    let notice = (attempt.restarts > 0).then(|| {
-        freeze_recovery::status_line(attempt.restarts + 1, freeze_recovery::MAX_RESTARTS + 1)
-    });
-    let starting = starting_dialog_with(&window, &profile_name, url.is_some(), notice.as_deref());
+    // No notice in the dialog. A restart after a freeze is silent — the
+    // "Starting Roblox" dialog reappears, which is enough. The old notice
+    // ("Roblox got stuck starting. Restarting it (2 of 3)") was a dialog
+    // that replaced the title and demanded attention for something the
+    // shell was already handling. Felix: "get rid of the god damn red
+    // notification ping."
+    let starting = starting_dialog_with(&window, &profile_name, url.is_some(), None);
 
     // **`SIGCHLD`, not a clock.** This was `timeout_add_local` at 500 ms for
     // the whole session -- two wakeups a second, forever, to ask a question
@@ -1329,7 +1329,7 @@ fn start_attempt(
         let dialog_closed = dialog_closed.clone();
         // A restart's status line is the only thing the user is told, so it
         // stays up long enough to be read rather than for the early-exit check.
-        let linger = if notice.is_some() { RECOVERY_NOTICE } else { EARLY_EXIT_CHECK };
+        let linger = EARLY_EXIT_CHECK;
         glib::timeout_add_local_once(linger, move || {
             if !dialog_closed.replace(true) {
                 starting.close();

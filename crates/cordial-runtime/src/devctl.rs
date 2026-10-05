@@ -449,7 +449,9 @@ fn handle(line: &str) -> String {
             }
             _ => "err updatesurface [app|game|both]".into(),
         },
-        // The capture the compositor would not give us. See `vulkan::capture`.
+        // The capture the compositor would not give us. See `android::capture`.
+        // The Vulkan path behind it is disconnected, so this verb fires the
+        // sentinel rather than writing a file.
         "screenshot" => match it.next() {
             Some(path) => match crate::android::vulkan::request_capture(path) {
                 Ok(desc) => format!("ok {desc}"),

@@ -16,7 +16,7 @@ expecting rough edges. What changed release by release is on the
 |---|---|---|
 | Loading `libroblox.so` natively | Works | The engine is extracted once and reused; only a new Roblox build re-extracts |
 | App shell | Works | Reaches `APP_READY (Landing)` |
-| Rendering | Works | Vulkan, on both backends |
+| Rendering | Works | GLES3; the Vulkan backend is disconnected in this fork |
 | Networking and HTTPS | Works | |
 | Loading into an experience | Works | World, avatar and UI render, signed in |
 | Engine content store | Works | `RbxStorage` is a real SQLite database; cache hits rise across launches, so assets are not refetched every session |

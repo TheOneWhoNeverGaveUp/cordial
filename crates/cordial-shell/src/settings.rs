@@ -1246,10 +1246,12 @@ fn build_general_page(
     // `pack vulkan_mobile`, because Vulkan is what the engine takes regardless.
     // The row it backed looked like a setting and was one only by coincidence.
     //
-    // What decides the backend is whether Cordial offers a Vulkan loader at all,
-    // since `libroblox.so` links none and `dlopen`s it. So this writes
-    // `shell.json` and `launch.rs` passes `CORDIAL_GRAPHICS`; the runtime's
-    // `graphics` module has the full measurement.
+    // In this fork the backend is always GLES3: the virtual `libvulkan.so`
+    // sonames are never registered, so the engine's `dlopen` of them fails
+    // and it takes its own fall-through. Selecting "Vulkan" fires the
+    // sentinel rather than quietly doing nothing. So this writes `shell.json`
+    // and `launch.rs` passes `CORDIAL_GRAPHICS`; the runtime's `graphics`
+    // module has the full reasoning.
     let model = gtk::StringList::new(&["Automatic", "Vulkan", "OpenGL ES"]);
     let selected = match config.borrow().graphics.as_str() {
         "vulkan" => 1,
@@ -1258,10 +1260,10 @@ fn build_general_page(
     };
     let row = adw::ComboRow::builder()
         .title("Renderer")
-        // The per-option mechanics (Vulkan keeps the engine's own GLES3
-        // fallback; OpenGL ES withholds the Vulkan loader and has no fallback
-        // of its own; Automatic is the only value a plugin may override,
-        // because an absent `CORDIAL_GRAPHICS` is what leaves it room) are in
+        // The per-option mechanics (Vulkan is disconnected in this fork and
+        // fires the sentinel; OpenGL ES is the only backend there is;
+        // Automatic is the only value a plugin may override, because an
+        // absent `CORDIAL_GRAPHICS` is what leaves it room) are in
         // `launch.rs` beside the code that sends them. What a user needs is
         // which one to leave it on.
         .subtitle("Automatic lets Roblox choose, and is the only setting a plugin may override.")
@@ -1373,6 +1375,10 @@ fn build_general_page(
     // was briefly the default and briefly first; it is neither now, and the
     // subtitle names the cost rather than leaving somebody to find it the way
     // the first reporter did.
+    //
+    // **Inert in this fork**, with the Vulkan backend disconnected: the row
+    // is kept so the failure is a stale row somebody can see and report rather
+    // than a setting that vanished. See `shell_config::PresentMode`.
     let present_model = gtk::StringList::new(&["Mailbox", "FIFO", "Immediate", "Automatic"]);
     let present = adw::ComboRow::builder()
         .title("Frame pacing")

@@ -41,6 +41,10 @@ fn now_ns() -> u64 {
 }
 
 /// Called once per `vkQueuePresentKHR`, before the present is forwarded.
+///
+/// **No longer called in this fork**: the Vulkan backend is disconnected, so
+/// no present ever reaches this and [`summary`] stays `None`. Kept as the API
+/// the capture path used.
 pub fn record_present() {
     let now = now_ns();
     let last = LAST_NS.swap(now, Ordering::Relaxed);

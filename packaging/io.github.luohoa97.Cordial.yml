@@ -399,8 +399,8 @@ modules:
       # directory under these same two filenames, which is how PR #22 came to
       # disable the Frostbite icon to fix an export failure that had already
       # been fixed; they are packaging/banner*.svg now.
-      - install -Dm644 packaging/icons/hicolor/scalable/apps/io.github.luohoa97.Cordial.svg
-          /app/share/icons/hicolor/scalable/apps/io.github.luohoa97.Cordial.svg
+      - install -Dm644 packaging/icons/hicolor/scalable/apps/io.github.luohoa97.CordialZ.svg
+          /app/share/icons/hicolor/scalable/apps/io.github.luohoa97.CordialZ.svg
       # Frostbite, the twice-a-year joke in `crates/cordial-shell/src/branding.rs`.
       # Installed unconditionally because the alternative is a name that resolves
       # to nothing on the one day nobody is watching for it, and because Flatpak

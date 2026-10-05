@@ -30,6 +30,11 @@
 //!   surface translated) and are handles the guest's Vulkan stubs work with.
 //!   The nested `VkInstanceCreateInfo`/`VkDeviceCreateInfo` chains and
 //!   allocator go through `guest_vk`'s translation.
+//!
+//! **The Vulkan half of that is disconnected in this fork.** The native
+//! virtual library is never registered, so `guest_vk`'s translation fires the
+//! sentinel and the VR path fails loudly rather than silently. The OpenXR
+//! bridge above is unchanged and still answers honestly.
 //! * Frames are counted and timed at `xrEndFrame`, since an XR engine never
 //!   presents, and `cordial_screenshot` reads the projection layer's
 //!   left-eye image as the engine releases it (`capture`).

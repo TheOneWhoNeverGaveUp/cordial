@@ -772,9 +772,9 @@ pub fn announce_audio_backend() {
 /// `org.fmod.FMOD.supportsAAudio()` has said yes, which is the actual gate
 /// and which was measured, not assumed; see the comment on that method.
 ///
-/// So this is registered the way `android::vulkan` and `mimalloc_lib` are, as
-/// a virtual library of its own — by default, since 2026-08-22, with
-/// `CORDIAL_AUDIO=java` the way back to FMOD's Java `AudioDevice` path.
+/// So this is registered the way `mimalloc_lib` is, as a virtual library of
+/// its own — by default, since 2026-08-22, with `CORDIAL_AUDIO=java` the way
+/// back to FMOD's Java `AudioDevice` path.
 pub fn aaudio_overrides() -> Vec<(&'static str, *mut c_void)> {
     #[repr(C)]
     struct Symbol {

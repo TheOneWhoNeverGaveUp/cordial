@@ -56,6 +56,49 @@ pub fn title() -> String {
     format!("{} {}", crate::branding::current().name(), crate::version::full())
 }
 
+/// Cordial Z's palette, loaded above every other provider so it wins.
+///
+/// Cordial ships no theme of its own: the window is libadwaita, so it wears
+/// whatever the desktop is wearing and changing Cordial's colours means
+/// changing the desktop's. That is right for upstream and wrong for a fork
+/// with its own mark, so this sheet is where a fork stops agreeing.
+///
+/// Written against named libadwaita colours rather than literals wherever one
+/// exists, so a theme that still resolves the name underneath keeps control of
+/// anything not named here. Only the background family and the accent are
+/// overridden; buttons, entries and switches are left to libadwaita, because
+/// restyling them by hand is how a sheet ends up unreadable in a light theme.
+const EX_SHEET: &str = " \
+    window, .cordial-engine-host { \
+        background-color: #14060c; \
+        color: #f4e6ec; \
+    } \
+    .cordial-engine-host headerbar, headerbar { \
+        background-color: #1f0a14; \
+        box-shadow: inset 0 -1px 0 rgba(190, 60, 120, 0.28); \
+    } \
+    .cordial-engine-host toolbarview, toolbarview { \
+        background-color: #180810; \
+    } \
+    .cordial-engine-host button, button { \
+        color: #f4e6ec; \
+    } \
+    .cordial-engine-host entry, entry, spinbutton { \
+        background-color: #2a0f1c; \
+        color: #f4e6ec; \
+        border-radius: 8px; \
+    } \
+    .cordial-engine-host entry:focus, entry:focus { \
+        box-shadow: inset 0 0 0 2px #b0356e; \
+    } \
+    .cordial-engine-host label, label { \
+        color: #ecd9e2; \
+    } \
+    .cordial-text-fallback { \
+        background-color: rgba(20, 6, 12, 0.94); \
+        border: 1px solid rgba(190, 60, 120, 0.45); \
+    }";
+
 /// How much of a monitor to leave for whatever else is on it.
 ///
 /// Wayland has no way to ask for a work area — a panel is just another client,
@@ -849,6 +892,22 @@ impl HostWindow {
             &host.editor_css,
             gtk::STYLE_PROVIDER_PRIORITY_APPLICATION + 1,
         );
+        // Cordial Z's own palette, above both of those. Cordial has no CSS of
+        // its own beyond the header and the editor, so everything else comes
+        // from the desktop's theme; without this the window is whatever GNOME
+        // happens to be wearing. UNTHEME is an escape hatch for a machine whose
+        // theme this fights, because the sheet is additive and a user who cannot
+        // get their colours back has no way to.
+        let themed = std::env::var_os("CORDIAL_EX_UNTHEME").is_none();
+        if themed {
+            let ex = gtk::CssProvider::new();
+            ex.load_from_string(EX_SHEET);
+            gtk::style_context_add_provider_for_display(
+                &WidgetExt::display(&host.window),
+                &ex,
+                gtk::STYLE_PROVIDER_PRIORITY_APPLICATION + 2,
+            );
+        }
         host
     }
 

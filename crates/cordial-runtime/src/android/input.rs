@@ -2120,8 +2120,8 @@ fn take_pending_unlocked_delta() -> Option<(f32, f32)> {
 ///
 /// Pure and separate from [`pass_mouse_move`] so the precedence is testable
 /// without a compositor to send either kind of event — the same reason
-/// `vulkan.rs`'s `resolve_present_mode` takes its inputs as plain values
-/// rather than reading the environment itself.
+/// `graphics::resolve` takes its inputs as plain values rather than reading
+/// the environment itself.
 fn resolve_mouse_delta(pending: Option<(f32, f32)>, from_position_diff: (f32, f32)) -> (f32, f32) {
     pending.unwrap_or(from_position_diff)
 }
@@ -3727,7 +3727,7 @@ mod tests {
     #[test]
     fn unaccelerated_diff_is_only_a_fallback_for_a_relative_sample() {
         // `resolve_mouse_delta` is the whole of the precedence, and it wants no
-        // global state at all — the same reason `resolve_present_mode` takes
+        // global state at all — the same reason `graphics::resolve` takes
         // plain values instead of reading the environment.
         assert_eq!(resolve_mouse_delta(Some((5.0, -2.0)), (1.0, 1.0)), (5.0, -2.0));
         assert_eq!(resolve_mouse_delta(None, (1.0, 1.0)), (1.0, 1.0));

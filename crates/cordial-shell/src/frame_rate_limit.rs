@@ -14,8 +14,8 @@ use serde::{Deserialize, Serialize};
 /// **Separate from `PresentMode`, not a replacement for it.** `fastflags.md`
 /// documents these as two levers -- Frame pacing is
 /// `VkSwapchainCreateInfoKHR::presentMode`, this is the engine's own
-/// scheduler target -- and `PresentMode::default()` has been `Mailbox`
-/// since before this row existed. What was missing was a way to raise the
+/// scheduler target -- and `PresentMode` is inert in this fork, with the
+/// Vulkan backend disconnected. What was missing was a way to raise the
 /// *engine's* own cap and have it stay raised.
 ///
 /// **There is no "Unlimited", and nothing above 240.** An earlier draft sent

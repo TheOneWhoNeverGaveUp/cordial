@@ -628,10 +628,11 @@ pub fn build(
         }
         table.rows.push(row);
     }
-    // Vulkan is not imported; the engine `dlopen`s it (§3.2, M5). The guest
-    // library exports what the native virtual one does, `vkGetInstanceProcAddr`
-    // alone, over the same Cordial implementation, so `VK_KHR_android_surface`,
-    // the swapchain's present mode and the capture keep working behind it.
+    // Vulkan is not imported; the engine `dlopen`s it (§3.2, M5). The native
+    // virtual library is never registered in this fork, so `native_gipa` is
+    // always `None` and the guest's `dlopen` of `libvulkan.so` fails the same
+    // way the phone build's does. The block is kept — with the sentinel behind
+    // it — so the VR path fails loudly if a Vulkan entry ever reappears.
     let native_gipa = native.libraries.iter()
         .filter(|(lib, _)| crate::android::vulkan::LIBRARY_NAMES.contains(lib))
         .flat_map(|(_, entries)| entries.iter())

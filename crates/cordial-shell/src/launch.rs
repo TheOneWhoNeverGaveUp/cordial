@@ -444,8 +444,10 @@ pub fn spawn(
     // silently outvoting every plugin while the row says Automatic.
     //
     // A variable rather than a file because the backend has to be settled before
-    // the engine's first `dlopen` of libvulkan, which is well before anything
-    // opens a profile. See `cordial_runtime::graphics`.
+    // the engine's first `dlopen`, which is well before anything opens a
+    // profile. In this fork that `dlopen` is never answered, so the engine
+    // takes GLES3; selecting "Vulkan" fires the sentinel. See
+    // `cordial_runtime::graphics`.
     if config.graphics != "automatic" {
         command.env("CORDIAL_GRAPHICS", &config.graphics);
     }
@@ -463,6 +465,10 @@ pub fn spawn(
     // outrank a plugin. That is deliberate. The power cost of MAILBOX is paid
     // by the person holding the machine, and a plugin should not be able to
     // spend it on somebody who never opened this page.
+    //
+    // **Inert in this fork**, with the Vulkan backend disconnected: the
+    // variable is read by nothing. The row is kept so the failure is a stale
+    // row somebody can see and report rather than a setting that vanished.
     if let Some(mode) = config.present_mode.as_env() {
         command.env("CORDIAL_PRESENT_MODE", mode);
     }

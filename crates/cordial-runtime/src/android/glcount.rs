@@ -43,15 +43,15 @@ counters! {
     DRAW_ARRAYS           => "glDrawArrays",
     COMPILE_SHADER        => "glCompileShader",
     TEX_IMAGE_2D          => "glTexImage2D",
-    // Vulkan's counterpart to eglSwapBuffers. Without it the report reads all
-    // zeros on a Vulkan session and looks exactly like "nothing rendered".
+    // Vulkan's counterpart to eglSwapBuffers. Zero in this fork: the Vulkan
+    // backend is disconnected, so nothing increments it and the report reads
+    // zero for every Vulkan counter below.
     QUEUE_PRESENT         => "vkQueuePresentKHR",
     // The T3/NVIDIA-textures question from TASKS.md ("detex: premise
     // unproven") and docs/adr/ADR-042: whether the engine ever asks the host
     // driver about a mobile compressed format at all, and whether any such
-    // query comes back with zero support. Incremented from
-    // `vulkan::vk_get_physical_device_format_properties`, never from a read of
-    // the binary or a guess.
+    // query comes back with zero support. Zero in this fork, with the Vulkan
+    // counters above.
     FORMAT_QUERY_ETC2        => "vkGetPhysicalDeviceFormatProperties(ETC2)",
     FORMAT_QUERY_ASTC        => "vkGetPhysicalDeviceFormatProperties(ASTC)",
     FORMAT_QUERY_BC          => "vkGetPhysicalDeviceFormatProperties(BC)",
