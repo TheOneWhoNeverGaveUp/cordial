@@ -1,0 +1,5 @@
+# Jekyll only needs the site/ directory
+# Everything else is source code, submodules, and packaging
+*
+!site/
+!site/**
