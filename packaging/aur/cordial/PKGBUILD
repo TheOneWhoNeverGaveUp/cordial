@@ -300,18 +300,18 @@ package() {
   # missing one is a blank icon in the task switcher on the one day nobody is
   # watching for it. A test in that file asserts both exist and are square.
   local _icons="usr/share/icons/hicolor/scalable/apps"
-  install -Dm644 "packaging/icons/hicolor/scalable/apps/io.github.luohoa97.CordialZ.svg" \
-    "$pkgdir/$_icons/io.github.luohoa97.CordialZ.svg"
-  install -Dm644 "packaging/icons/hicolor/scalable/apps/io.github.luohoa97.Cordial.Frostbite.svg" \
-    "$pkgdir/$_icons/io.github.luohoa97.Cordial.Frostbite.svg"
+  install -Dm644 "packaging/icons/hicolor/scalable/apps/io.github.luohoa97.CordialZZ.svg" \
+    "$pkgdir/$_icons/io.github.luohoa97.CordialZZ.svg"
+  install -Dm644 "packaging/icons/hicolor/scalable/apps/io.github.luohoa97.CordialZ.Frostbite.svg" \
+    "$pkgdir/$_icons/io.github.luohoa97.CordialZ.Frostbite.svg"
 
   # Exec=cordial-shell %u, and the %u is not decorative: the entry registers
   # x-scheme-handler/roblox-player, which is how a Play button on the website
   # reaches a client at all.
-  install -Dm644 "packaging/io.github.luohoa97.Cordial.desktop" \
-    "$pkgdir/usr/share/applications/io.github.luohoa97.Cordial.desktop"
-  install -Dm644 "packaging/io.github.luohoa97.Cordial.metainfo.xml" \
-    "$pkgdir/usr/share/metainfo/io.github.luohoa97.Cordial.metainfo.xml"
+  install -Dm644 "packaging/io.github.luohoa97.CordialZ.desktop" \
+    "$pkgdir/usr/share/applications/io.github.luohoa97.CordialZ.desktop"
+  install -Dm644 "packaging/io.github.luohoa97.CordialZ.metainfo.xml" \
+    "$pkgdir/usr/share/metainfo/io.github.luohoa97.CordialZ.metainfo.xml"
 
   # MIT requires its notice in "all copies or substantial portions",
   # Apache-2.0 section 4(d) requires NOTICE to travel with derivative works,

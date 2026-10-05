@@ -1,7 +1,7 @@
 # Flatpak manifest for Cordial.
 #
 # Flatpak is the primary distribution target (spec §11), which is why the plugin
-# directory is `~/.var/app/io.github.luohoa97.Cordial/data/cordial/plugins/` and drag-and-drop
+# directory is `~/.var/app/io.github.luohoa97.CordialZ/data/cordial/plugins/` and drag-and-drop
 # is the install path rather than a convenience.
 #
 # Build:
@@ -23,7 +23,7 @@
 #     nowhere near `--filesystem=host`. notify.send and url.open needed no
 #     manifest entry at all; see the comment beside them.
 
-app-id: io.github.luohoa97.Cordial
+app-id: io.github.luohoa97.CordialZ
 # The GNOME runtime, not the freedesktop one, because the shell is GTK4 and
 # libadwaita (ADR-011) and org.freedesktop.Sdk has neither. This was wrong from
 # the first commit of this file and every CI run failed the same way for it:
@@ -399,22 +399,22 @@ modules:
       # directory under these same two filenames, which is how PR #22 came to
       # disable the Frostbite icon to fix an export failure that had already
       # been fixed; they are packaging/banner*.svg now.
-      - install -Dm644 packaging/icons/hicolor/scalable/apps/io.github.luohoa97.CordialZ.svg
-          /app/share/icons/hicolor/scalable/apps/io.github.luohoa97.CordialZ.svg
+      - install -Dm644 packaging/icons/hicolor/scalable/apps/io.github.luohoa97.CordialZZ.svg
+          /app/share/icons/hicolor/scalable/apps/io.github.luohoa97.CordialZZ.svg
       # Frostbite, the twice-a-year joke in `crates/cordial-shell/src/branding.rs`.
       # Installed unconditionally because the alternative is a name that resolves
       # to nothing on the one day nobody is watching for it, and because Flatpak
       # exports only files whose names begin with the application id -- which is
-      # exactly why this is a suffix of `io.github.luohoa97.Cordial` rather than
+      # exactly why this is a suffix of `io.github.luohoa97.CordialZ` rather than
       # an id of its own. The app id itself does not change on either day.
-      - install -Dm644 packaging/icons/hicolor/scalable/apps/io.github.luohoa97.Cordial.Frostbite.svg
-          /app/share/icons/hicolor/scalable/apps/io.github.luohoa97.Cordial.Frostbite.svg
-      - install -Dm644 packaging/io.github.luohoa97.Cordial.desktop
-          /app/share/applications/io.github.luohoa97.Cordial.desktop
+      - install -Dm644 packaging/icons/hicolor/scalable/apps/io.github.luohoa97.CordialZ.Frostbite.svg
+          /app/share/icons/hicolor/scalable/apps/io.github.luohoa97.CordialZ.Frostbite.svg
+      - install -Dm644 packaging/io.github.luohoa97.CordialZ.desktop
+          /app/share/applications/io.github.luohoa97.CordialZ.desktop
       # Without this the hosted remote installs but does not browse: a software
       # centre lists the remote and finds nothing in it. See the file.
-      - install -Dm644 packaging/io.github.luohoa97.Cordial.metainfo.xml
-          /app/share/metainfo/io.github.luohoa97.Cordial.metainfo.xml
+      - install -Dm644 packaging/io.github.luohoa97.CordialZ.metainfo.xml
+          /app/share/metainfo/io.github.luohoa97.CordialZ.metainfo.xml
       # Licence and attribution. MIT requires its notice in "all copies or
       # substantial portions", and Apache-2.0 section 4(d) requires the NOTICE
       # file to travel with derivative works — both apply to a binary build, not

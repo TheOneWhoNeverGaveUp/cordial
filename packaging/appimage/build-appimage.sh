@@ -265,14 +265,14 @@ install -Dm755 "$target_dir/release/cordial-run"   "$appdir/usr/bin/cordial-run"
 # away from Fedora's libraries, not a reason to ship ours unstripped.
 strip --strip-debug "$appdir/usr/bin/cordial-shell" "$appdir/usr/bin/cordial-run"
 
-install -Dm644 packaging/io.github.luohoa97.Cordial.desktop \
-    "$appdir/usr/share/applications/io.github.luohoa97.Cordial.desktop"
-install -Dm644 packaging/io.github.luohoa97.Cordial.metainfo.xml \
-    "$appdir/usr/share/metainfo/io.github.luohoa97.Cordial.metainfo.xml"
-install -Dm644 packaging/icons/hicolor/scalable/apps/io.github.luohoa97.CordialZ.svg \
-    "$appdir/usr/share/icons/hicolor/scalable/apps/io.github.luohoa97.CordialZ.svg"
-install -Dm644 packaging/icons/hicolor/scalable/apps/io.github.luohoa97.Cordial.Frostbite.svg \
-    "$appdir/usr/share/icons/hicolor/scalable/apps/io.github.luohoa97.Cordial.Frostbite.svg"
+install -Dm644 packaging/io.github.luohoa97.CordialZ.desktop \
+    "$appdir/usr/share/applications/io.github.luohoa97.CordialZ.desktop"
+install -Dm644 packaging/io.github.luohoa97.CordialZ.metainfo.xml \
+    "$appdir/usr/share/metainfo/io.github.luohoa97.CordialZ.metainfo.xml"
+install -Dm644 packaging/icons/hicolor/scalable/apps/io.github.luohoa97.CordialZZ.svg \
+    "$appdir/usr/share/icons/hicolor/scalable/apps/io.github.luohoa97.CordialZZ.svg"
+install -Dm644 packaging/icons/hicolor/scalable/apps/io.github.luohoa97.CordialZ.Frostbite.svg \
+    "$appdir/usr/share/icons/hicolor/scalable/apps/io.github.luohoa97.CordialZ.Frostbite.svg"
 
 licdir="$appdir/usr/share/licenses/cordial"
 install -Dm644 LICENSE "$licdir/LICENSE"
@@ -305,16 +305,16 @@ install -Dm755 packaging/appimage/AppRun "$appdir/AppRun"
 # desktop file and an icon at the AppDir root, not only under usr/share/. A
 # copy rather than a symlink, because appimagetool refuses to package a
 # symlink pointing outside the tree it is squashing.
-cp "$appdir/usr/share/applications/io.github.luohoa97.Cordial.desktop" \
-    "$appdir/io.github.luohoa97.Cordial.desktop"
+cp "$appdir/usr/share/applications/io.github.luohoa97.CordialZ.desktop" \
+    "$appdir/io.github.luohoa97.CordialZ.desktop"
 # Rasterised because AppImage's own integration (and thumbnailers that read
 # AppImages without extracting them) commonly assume a PNG at the root even
 # where the desktop's Icon= key resolves an SVG everywhere else -- 256x256
 # matches the largest size Cordial's own icon theme directory would carry had
 # one been rendered, and is large enough not to look soft in a file manager.
 rsvg-convert --width 256 --height 256 \
-    packaging/icons/hicolor/scalable/apps/io.github.luohoa97.CordialZ.svg \
-    -o "$appdir/io.github.luohoa97.Cordial.png"
+    packaging/icons/hicolor/scalable/apps/io.github.luohoa97.CordialZZ.svg \
+    -o "$appdir/io.github.luohoa97.CordialZ.png"
 
 echo "==> bundling shared libraries with linuxdeploy"
 # Plain linuxdeploy, deliberately with no GTK plugin. linuxdeploy-plugin-gtk
@@ -408,8 +408,8 @@ done
 "$tools_dir/linuxdeploy-${appimage_arch}.AppImage" \
     --appdir "$appdir" \
     "${deploy_args[@]}" \
-    --desktop-file "$appdir/io.github.luohoa97.Cordial.desktop" \
-    --icon-file "$appdir/io.github.luohoa97.Cordial.png"
+    --desktop-file "$appdir/io.github.luohoa97.CordialZ.desktop" \
+    --icon-file "$appdir/io.github.luohoa97.CordialZ.png"
 
 echo "==> laying out what WebKitGTK reaches by absolute path"
 # linuxdeploy was just given each helper as an --executable so their own

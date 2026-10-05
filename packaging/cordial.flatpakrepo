@@ -4,7 +4,7 @@
 #
 #     flatpak remote-add --if-not-exists cordial \
 #         https://luohoa97.github.io/cordial/cordial.flatpakrepo
-#     flatpak install cordial io.github.luohoa97.Cordial
+#     flatpak install cordial io.github.luohoa97.CordialZ
 #
 # There is deliberately no GPGKey line here. The workflow appends one when the
 # FLATPAK_GPG_PRIVATE_KEY secret is set, and appends nothing when it is not.
@@ -27,20 +27,20 @@
 # tagged release and is this remote's default, so the install command above
 # lands there with no branch named. `master` moves on every push to main and
 # is what installing before this comment existed put you on -- if `flatpak
-# list` shows `io.github.luohoa97.Cordial` on branch `master`, move to the
+# list` shows `io.github.luohoa97.CordialZ` on branch `master`, move to the
 # release channel with:
 #
-#     flatpak uninstall io.github.luohoa97.Cordial//master
-#     flatpak install cordial io.github.luohoa97.Cordial//stable
+#     flatpak uninstall io.github.luohoa97.CordialZ//master
+#     flatpak install cordial io.github.luohoa97.CordialZ//stable
 #
 # (add --user to both if you installed with it). To stay on master instead --
 # every commit, not just releases -- name it explicitly:
 #
-#     flatpak install cordial io.github.luohoa97.Cordial//master
+#     flatpak install cordial io.github.luohoa97.CordialZ//master
 
 [Flatpak Repo]
 Title=Cordial
 Url=https://luohoa97.github.io/cordial/repo/
 Homepage=https://luohoa97.github.io/cordial/
-Icon=https://raw.githubusercontent.com/luohoa97/cordial/main/packaging/icons/hicolor/scalable/apps/io.github.luohoa97.Cordial.svg
+Icon=https://raw.githubusercontent.com/luohoa97/cordial/main/packaging/icons/hicolor/scalable/apps/io.github.luohoa97.CordialZ.svg
 Description=Run Roblox on Linux natively. Cordial loads Roblox's official Android x86-64 engine directly, with no emulator, container or virtual machine. It ships no Roblox code; you supply the Android client yourself.

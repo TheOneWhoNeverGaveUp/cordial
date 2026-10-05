@@ -118,14 +118,14 @@ rustPlatform.buildRustPackage.override { stdenv = clangStdenv; } (finalAttrs: {
       install -Dm644 "$plugin/main.ts" "$out/share/cordial/plugins/$id/main.ts"
     done
 
-    install -Dm644 packaging/icons/hicolor/scalable/apps/io.github.luohoa97.CordialZ.svg \
-      "$out/share/icons/hicolor/scalable/apps/io.github.luohoa97.CordialZ.svg"
-    install -Dm644 packaging/icons/hicolor/scalable/apps/io.github.luohoa97.Cordial.Frostbite.svg \
-      "$out/share/icons/hicolor/scalable/apps/io.github.luohoa97.Cordial.Frostbite.svg"
-    install -Dm644 packaging/io.github.luohoa97.Cordial.desktop \
-      "$out/share/applications/io.github.luohoa97.Cordial.desktop"
-    install -Dm644 packaging/io.github.luohoa97.Cordial.metainfo.xml \
-      "$out/share/metainfo/io.github.luohoa97.Cordial.metainfo.xml"
+    install -Dm644 packaging/icons/hicolor/scalable/apps/io.github.luohoa97.CordialZZ.svg \
+      "$out/share/icons/hicolor/scalable/apps/io.github.luohoa97.CordialZZ.svg"
+    install -Dm644 packaging/icons/hicolor/scalable/apps/io.github.luohoa97.CordialZ.Frostbite.svg \
+      "$out/share/icons/hicolor/scalable/apps/io.github.luohoa97.CordialZ.Frostbite.svg"
+    install -Dm644 packaging/io.github.luohoa97.CordialZ.desktop \
+      "$out/share/applications/io.github.luohoa97.CordialZ.desktop"
+    install -Dm644 packaging/io.github.luohoa97.CordialZ.metainfo.xml \
+      "$out/share/metainfo/io.github.luohoa97.CordialZ.metainfo.xml"
 
     # Notices that upstream asks to travel with the binary.
     install -Dm644 LICENSE NOTICE THIRD-PARTY-NOTICES.md -t "$out/share/licenses/cordial"
